@@ -82,6 +82,8 @@ Before writing any application code, read:
 - docs/ARCHITECTURE.md
 - docs/MVP.md
 - docs/DECISIONS.md
+- docs/RESEARCH.md
+- docs/EVALS.md
 - docs/CODEX_WORKFLOW.md
 
 Treat docs/PRD.md as the authoritative product definition,

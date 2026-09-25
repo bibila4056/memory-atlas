@@ -29,6 +29,16 @@ Read only the documents relevant to the current task.
 11. If implementation reveals a product or architecture conflict, surface it before changing the docs or code.
 12. Never silently rewrite a locked decision.
 
+
+## Research-backed implementation rules
+
+- Read `docs/RESEARCH.md` before implementing retrieval, Bundle Weaver, visual planning, or aesthetic reranking.
+- When a ticket claims a paper-backed mechanism, implement a recognizable version of the mechanism and document deliberate simplifications.
+- Do not replace research-backed modules with toy random/rule-only stubs in the final MVP without surfacing the change.
+- Do not claim a model/paper is used unless the corresponding code path actually runs.
+- Add a short module docstring or comment identifying the paper/mechanism being adapted where appropriate.
+- Implement the lightweight evaluations in `docs/EVALS.md` before the final demo.
+
 ## Engineering defaults
 
 - Frontend: Next.js + React + TypeScript

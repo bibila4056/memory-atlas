@@ -38,7 +38,8 @@ Start with:
 
 ```text
 Read AGENTS.md, CONTEXT.md, docs/PRD.md, docs/DESIGN.md,
-docs/ARCHITECTURE.md, docs/MVP.md, and docs/DECISIONS.md.
+docs/ARCHITECTURE.md, docs/MVP.md, docs/DECISIONS.md,
+docs/RESEARCH.md, and docs/EVALS.md.
 
 We are preparing a 48-hour MVP of Memory Atlas.
 
