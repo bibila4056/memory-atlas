@@ -1,0 +1,147 @@
+{
+  "schema_version": "0.1.0",
+  "plan_id": "plan_demo_flower_market",
+  "plan_revision": 1,
+  "session_id": "session_demo_flower_market",
+  "canvas": {
+    "width": 1600,
+    "height": 1000,
+    "page_split_x": 800,
+    "outer_safe_margin": 48,
+    "gutter": {
+      "x": 776,
+      "width": 48
+    }
+  },
+  "title": "After the rain",
+  "palette": [
+    "#F7F1E5",
+    "#302B25",
+    "#B89A56",
+    "#8D9A80",
+    "#C88970"
+  ],
+  "uses_timeline": false,
+  "status": "resolved",
+  "elements": [
+    {
+      "id": "mount_photo",
+      "kind": "decoration",
+      "chrome_kind": "generic_mount",
+      "bounds": {
+        "x": 80,
+        "y": 214,
+        "width": 676,
+        "height": 462.6667
+      },
+      "rotation_deg": -1.2,
+      "z_index": 9,
+      "provenance_interactive": false,
+      "overlap_group_id": "photo_mount"
+    },
+    {
+      "id": "photo_flower_market",
+      "kind": "photo",
+      "source_ids": [
+        "source_demo_photo_01"
+      ],
+      "source_asset_id": "demo://flower-market-morning",
+      "treatment": "PRESERVE",
+      "fit": "contain",
+      "bounds": {
+        "x": 98,
+        "y": 232,
+        "width": 640,
+        "height": 426.6667
+      },
+      "rotation_deg": -1.2,
+      "z_index": 10,
+      "provenance_interactive": true,
+      "overlap_group_id": "photo_mount"
+    },
+    {
+      "id": "title_after_rain",
+      "kind": "text",
+      "source_ids": [
+        "source_demo_text_01"
+      ],
+      "text": "After the rain",
+      "text_mode": "verbatim",
+      "style_role": "title",
+      "font_size_px": 76,
+      "align": "left",
+      "bounds": {
+        "x": 918,
+        "y": 222,
+        "width": 570,
+        "height": 108
+      },
+      "rotation_deg": 0,
+      "z_index": 20,
+      "provenance_interactive": true
+    },
+    {
+      "id": "quote_slow_morning",
+      "kind": "text",
+      "source_ids": [
+        "source_demo_audio_01"
+      ],
+      "text": "I only meant to buy coffee. Then the flowers made the whole morning slow down.",
+      "text_mode": "verbatim",
+      "style_role": "quote",
+      "font_size_px": 36,
+      "align": "left",
+      "bounds": {
+        "x": 924,
+        "y": 390,
+        "width": 478,
+        "height": 240
+      },
+      "rotation_deg": 0,
+      "z_index": 20,
+      "provenance_interactive": true
+    },
+    {
+      "id": "caption_september",
+      "kind": "text",
+      "source_ids": [
+        "source_demo_text_02"
+      ],
+      "text": "Saturday, 9:14 a.m.\nThe market opened under a thin silver sky.",
+      "text_mode": "verbatim",
+      "style_role": "caption",
+      "font_size_px": 23,
+      "align": "left",
+      "bounds": {
+        "x": 120,
+        "y": 728,
+        "width": 490,
+        "height": 116
+      },
+      "rotation_deg": 0,
+      "z_index": 20,
+      "provenance_interactive": true
+    },
+    {
+      "id": "motif_flower_line",
+      "kind": "generated_asset",
+      "source_ids": [
+        "source_demo_photo_01"
+      ],
+      "treatment": "DISTILL",
+      "art_style": "doodle",
+      "asset_request_id": "asset_request_demo_flower_line",
+      "asset_ref": "/demo/flower-line.svg",
+      "generation_mode": "fallback",
+      "bounds": {
+        "x": 1300,
+        "y": 698,
+        "width": 132,
+        "height": 152
+      },
+      "rotation_deg": 0,
+      "z_index": 12,
+      "provenance_interactive": true
+    }
+  ]
+}

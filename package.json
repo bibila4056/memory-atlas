@@ -1,0 +1,20 @@
+{
+  "name": "memory-atlas",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @memory-atlas/web run dev",
+    "build:web": "npm --workspace @memory-atlas/web run build",
+    "test:web": "npm --workspace @memory-atlas/web run test",
+    "lint:web": "npm --workspace @memory-atlas/web run lint",
+    "dev:api": ".venv/bin/python -m uvicorn app.main:app --app-dir apps/api --reload --port 8000",
+    "test:api": ".venv/bin/python -m pytest apps/api/tests",
+    "contracts:generate": ".venv/bin/python scripts/export_openapi.py && openapi-typescript apps/api/openapi.json -o apps/web/src/lib/api-schema.d.ts",
+    "test": "npm run test:web && npm run test:api",
+    "test:e2e": "npm --workspace @memory-atlas/web run test:e2e",
+    "lint": "npm run lint:web",
+    "build": "npm run build:web"
+  }
+}

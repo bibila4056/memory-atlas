@@ -1,0 +1,345 @@
+{
+ "about": "Hand-written meaning of each sticker. scripts/build_stickers.py cleans originals/ → public/stickers/ and adds measured fields (aspect, palette) into public/stickers/library.json. Edit THIS file, then rebuild.",
+ "fields": {
+  "kind": "botanical | food | object | weather | creature | accent | figure",
+  "medium": "how it was made; photographic cut-outs compete with the author's real photos, so the picker allows at most one",
+  "generic": "true = decoration that may appear on colour fit alone; false = a specific thing that needs a content match (no eggs benedict on a day without brunch)",
+  "tags": "content words matched against the story. For generic:false stickers keep ONLY words that name the thing itself (never broad words like street, cafe, city) — one loose tag is enough to pull a specific object onto an unrelated day",
+  "moods": "feeling words matched against Moment moods",
+  "role": "accent (small, 80–160 px) | corner (anchors a page corner, 180–320 px) | hero (can hold a large empty area)"
+ },
+ "stickers": [
+  {
+   "id": "umbrella-yellow",
+   "label": "Yellow umbrella",
+   "kind": "object",
+   "medium": "watercolor",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "rain",
+    "umbrella",
+    "walk",
+    "weather",
+    "street",
+    "wet"
+   ],
+   "moods": [
+    "moody",
+    "cozy"
+   ],
+   "notes": "Soft watercolor; reads well tilted near a rainy photo."
+  },
+  {
+   "id": "cloud-soft",
+   "label": "Soft cloud",
+   "kind": "weather",
+   "medium": "gouache",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "rain",
+    "cloudy",
+    "sky",
+    "weather",
+    "overcast"
+   ],
+   "moods": [
+    "moody",
+    "calm",
+    "dreamy",
+    "quiet"
+   ],
+   "notes": "Blue-cream; pair with pencil rain strokes under it."
+  },
+  {
+   "id": "butterfly-sage",
+   "label": "Sage butterfly",
+   "kind": "creature",
+   "medium": "tinted engraving",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "garden",
+    "spring",
+    "nature",
+    "outdoors",
+    "park",
+    "flower"
+   ],
+   "moods": [
+    "delicate",
+    "curious",
+    "playful"
+   ],
+   "notes": "Fine engraved lines with a pink rim; keep small."
+  },
+  {
+   "id": "rose-pink",
+   "label": "Pink rose",
+   "kind": "botanical",
+   "medium": "colored pencil",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "flower",
+    "flowers",
+    "rose",
+    "roses",
+    "bouquet",
+    "birthday",
+    "anniversary",
+    "date"
+   ],
+   "moods": [
+    "romantic",
+    "tender",
+    "warm"
+   ],
+   "notes": "Saturated magenta; only when pink/red already lives in the photos."
+  },
+  {
+   "id": "ginkgo-leaf",
+   "label": "Ginkgo leaf",
+   "kind": "botanical",
+   "medium": "painted paper",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "leaf",
+    "tree",
+    "autumn",
+    "fall",
+    "park",
+    "campus",
+    "walk",
+    "nature"
+   ],
+   "moods": [
+    "calm",
+    "nostalgic"
+   ],
+   "notes": "Green with yellow edges; strong autumn signal."
+  },
+  {
+   "id": "apple-paper-collage",
+   "label": "Collage apple",
+   "kind": "food",
+   "medium": "newspaper collage",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "apple",
+    "apples",
+    "orchard",
+    "fruit",
+    "picnic"
+   ],
+   "moods": [
+    "warm",
+    "playful"
+   ],
+   "notes": "Torn-paper red with newsprint; matches the tape-collage language."
+  },
+  {
+   "id": "eggs-benedict-watercolor",
+   "label": "Eggs benedict",
+   "kind": "food",
+   "medium": "watercolor",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "brunch",
+    "breakfast",
+    "eggs",
+    "egg",
+    "benedict",
+    "salmon",
+    "hollandaise"
+   ],
+   "moods": [
+    "cozy",
+    "indulgent"
+   ],
+   "notes": "Only for a brunch/breakfast moment."
+  },
+  {
+   "id": "cherries-paper-cutout",
+   "label": "Cherries",
+   "kind": "food",
+   "medium": "photo cut-out on paper",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "cherry",
+    "cherries",
+    "fruit",
+    "dessert",
+    "picnic"
+   ],
+   "moods": [
+    "playful",
+    "sweet"
+   ],
+   "notes": "Glossy photo with a white paper cut border; photographic."
+  },
+  {
+   "id": "lime-botanical",
+   "label": "Lime",
+   "kind": "food",
+   "medium": "vintage botanical illustration",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "lime",
+    "citrus",
+    "cocktail",
+    "margarita",
+    "tacos",
+    "lemonade",
+    "mojito"
+   ],
+   "moods": [
+    "fresh",
+    "bright"
+   ],
+   "notes": "Bright green; loud against muted palettes."
+  },
+  {
+   "id": "tree-green",
+   "label": "Green tree",
+   "kind": "botanical",
+   "medium": "photo cut-out",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "tree",
+    "trees",
+    "park",
+    "forest",
+    "garden",
+    "picnic"
+   ],
+   "moods": [
+    "fresh",
+    "calm"
+   ],
+   "notes": "Photographic and dense; use at most one, small, near a green photo."
+  },
+  {
+   "id": "statue-face-sketch",
+   "label": "Statue face",
+   "kind": "figure",
+   "medium": "ink stipple drawing",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "museum",
+    "gallery",
+    "sculpture",
+    "statue",
+    "exhibition",
+    "art"
+   ],
+   "moods": [
+    "quiet",
+    "pensive",
+    "dreamy",
+    "calm",
+    "tired"
+   ],
+   "notes": "Black ink on transparency: only on light paper. Faces carry meaning; never beside a real person's face."
+  },
+  {
+   "id": "pressed-wildflowers",
+   "label": "Pressed wildflowers",
+   "kind": "botanical",
+   "medium": "pressed botanicals",
+   "generic": true,
+   "role": "corner",
+   "tags": [
+    "flower",
+    "wildflower",
+    "meadow",
+    "garden",
+    "hike",
+    "nature",
+    "spring",
+    "summer"
+   ],
+   "moods": [
+    "nostalgic",
+    "quiet",
+    "tender",
+    "calm"
+   ],
+   "notes": "Faded beige, lavender; blends into almost any muted palette."
+  },
+  {
+   "id": "bicycle-vintage",
+   "label": "Vintage bicycle",
+   "kind": "object",
+   "medium": "vintage illustration",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "bike",
+    "bicycle",
+    "ride",
+    "cycling",
+    "biking"
+   ],
+   "moods": [
+    "nostalgic",
+    "free"
+   ],
+   "notes": "Brown ink tones; only when someone rode or saw bikes."
+  },
+  {
+   "id": "stars-cardboard",
+   "label": "Cardboard stars",
+   "kind": "accent",
+   "medium": "cardboard cut-out",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "night",
+    "stars",
+    "celebration",
+    "birthday",
+    "win",
+    "party",
+    "concert",
+    "achievement"
+   ],
+   "moods": [
+    "joyful",
+    "proud",
+    "playful"
+   ],
+   "notes": "Mustard yellow; use as a small cheer mark, never more than one cluster."
+  }
+ ],
+ "backgrounds": [
+  {
+   "id": "wildflower-watercolor",
+   "file": "/materials/backgrounds/wildflower-watercolor.jpg",
+   "label": "Wildflower watercolor wash",
+   "tags": [
+    "flower",
+    "meadow",
+    "garden",
+    "spring",
+    "nature",
+    "hike",
+    "picnic"
+   ],
+   "moods": [
+    "calm",
+    "dreamy",
+    "tender"
+   ],
+   "notes": "Full-bleed watercolor paper with lavender and sage wildflowers at the lower right; leaves the upper left empty for a title. Use as a low-opacity page wash for gentle nature days, not as a sticker. Not tileable."
+  }
+ ]
+}

@@ -1,0 +1,243 @@
+{
+  "prepared_by": "offline fixture: hand-prepared from the four demo photos and the author's note (no live model call)",
+  "note": "Structured outputs a reasoning model is expected to return for these exact originals. Used only when no live model is configured; the WeaveResult then reports providers.reasoning = \"fixture\".",
+  "atoms": [
+    {
+      "source_sha256": [
+        "1a7a72abe8f1acc667265b24cc2c44b7659dbc580be348a9665997a4f68d8df3"
+      ],
+      "event": "walk in the rain",
+      "objects": [
+        "umbrella",
+        "wet sidewalk",
+        "traffic lights"
+      ],
+      "moods": [
+        "moody",
+        "grey"
+      ],
+      "themes": [
+        "rain",
+        "street"
+      ],
+      "salience": 0.9,
+      "subject_kind": "object",
+      "details": [
+        {
+          "label": "person",
+          "box": [
+            0.44,
+            0.46,
+            0.6,
+            0.9
+          ]
+        },
+        {
+          "label": "umbrella",
+          "box": [
+            0.38,
+            0.45,
+            0.66,
+            0.57
+          ]
+        }
+      ]
+    },
+    {
+      "source_sha256": [
+        "c743e34938c8931e49248fdd12e5af4660096f9ac4122a6fdb69816e1b1a4805"
+      ],
+      "event": "hidden film shop",
+      "objects": [
+        "film cameras",
+        "photo books",
+        "shelves",
+        "shop sign"
+      ],
+      "moods": [
+        "cozy",
+        "curious"
+      ],
+      "themes": [
+        "film",
+        "shop"
+      ],
+      "salience": 0.75,
+      "subject_kind": "scene",
+      "details": [
+        {
+          "label": "shop sign",
+          "box": [
+            0.28,
+            0.05,
+            0.56,
+            0.3
+          ]
+        }
+      ]
+    },
+    {
+      "source_sha256": [
+        "1c5eb704d895c9cf01aa9a942cdf65c7ff9b5ea7c93ab46a0a45907e14fee3d4"
+      ],
+      "event": "churros at Morcilla",
+      "objects": [
+        "churros",
+        "flan",
+        "candle",
+        "glass"
+      ],
+      "moods": [
+        "warm",
+        "comforted"
+      ],
+      "themes": [
+        "food",
+        "evening"
+      ],
+      "salience": 0.85,
+      "subject_kind": "object",
+      "details": [
+        {
+          "label": "churros",
+          "box": [
+            0.12,
+            0.33,
+            0.46,
+            0.76
+          ]
+        },
+        {
+          "label": "flan",
+          "box": [
+            0.4,
+            0.63,
+            0.94,
+            0.91
+          ]
+        },
+        {
+          "label": "candle",
+          "box": [
+            0.43,
+            0.44,
+            0.63,
+            0.62
+          ]
+        }
+      ]
+    },
+    {
+      "source_sha256": [
+        "68a29fa9e43f592745f97ce8bffe4e1a349724593f90e76c364fb2b4d0a2eaae"
+      ],
+      "event": "rain on the restaurant window",
+      "objects": [
+        "window",
+        "trees",
+        "menus",
+        "table"
+      ],
+      "moods": [
+        "quiet",
+        "sheltered"
+      ],
+      "themes": [
+        "rain",
+        "window"
+      ],
+      "salience": 0.6,
+      "subject_kind": "scene",
+      "details": []
+    },
+    {
+      "source_sha256": [
+        "7013e531825afdac1d4b68b76001de9a47eef96cf22303093b0205a8d067740c"
+      ],
+      "optional": true,
+      "event": "walk in the rain",
+      "moods": [
+        "moody"
+      ],
+      "themes": [
+        "rain"
+      ],
+      "salience": 0.7
+    },
+    {
+      "source_sha256": [
+        "7013e531825afdac1d4b68b76001de9a47eef96cf22303093b0205a8d067740c"
+      ],
+      "optional": true,
+      "event": "hidden film shop",
+      "people": [
+        "Shelly"
+      ],
+      "moods": [
+        "cute"
+      ],
+      "themes": [
+        "film"
+      ],
+      "salience": 0.7
+    },
+    {
+      "source_sha256": [
+        "7013e531825afdac1d4b68b76001de9a47eef96cf22303093b0205a8d067740c"
+      ],
+      "optional": true,
+      "event": "churros at Morcilla",
+      "place": "Morcilla",
+      "moods": [
+        "cheered up"
+      ],
+      "themes": [
+        "food"
+      ],
+      "salience": 0.7
+    }
+  ],
+  "story": {
+    "intent": "A moody, rainy afternoon with Shelly that the pouring rain threw off, rescued by churros at Morcilla.",
+    "title": "a moody, rainy day",
+    "keywords": [
+      "rain",
+      "moody",
+      "film shop",
+      "shelly",
+      "churros"
+    ],
+    "roles": [
+      {
+        "role": "Anchor",
+        "intent": "The rain that shaped the day",
+        "query": "a person walking with an umbrella on a wet rainy street"
+      },
+      {
+        "role": "Discovery",
+        "intent": "The cute, hidden film shop",
+        "query": "inside a small shop with film cameras and photo books on shelves"
+      },
+      {
+        "role": "Shelter",
+        "intent": "Watching the rain from indoors",
+        "query": "rain on a window looking out at green trees from a table"
+      },
+      {
+        "role": "Closing",
+        "intent": "What cheered them up",
+        "query": "churros and dessert on a table by candlelight"
+      }
+    ]
+  },
+  "verifier": {
+    "coverage": 5,
+    "coherence": 4,
+    "complementarity": 5,
+    "groundedness": 4,
+    "visual_diversity": 5,
+    "weakest_moment_id": null,
+    "replacement_moment_id": null,
+    "rationale": "Street, shop, window and table each add different information about one rainy outing. The window photo carries an earlier capture date, so its place in this day is thematic, not chronological."
+  }
+}

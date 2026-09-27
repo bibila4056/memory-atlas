@@ -1,0 +1,9 @@
+# Optional: real SigLIP 2 embeddings (google/siglip2-base-patch16-256). Without these, the
+# weaver uses the documented image-only fallback and records `embeddings: "fallback"`.
+torch>=2.3
+transformers>=4.49
+sentencepiece>=0.2
+protobuf>=4
+
+# Optional: offline voice transcription without an API key (downloads the Whisper 'small' model once, ~460 MB)
+faster-whisper>=1.0

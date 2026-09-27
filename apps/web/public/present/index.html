@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Memory Atlas — OA presentation</title>
+<style>
+@font-face { font-family: 'Cormorant Garamond'; src: url('/fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'Cormorant Garamond'; src: url('/fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; }
+@font-face { font-family: 'Cormorant Garamond'; src: url('/fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Cormorant Garamond'; src: url('/fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2'); font-weight: 500; font-style: italic; }
+@font-face { font-family: 'EB Garamond'; src: url('/fonts/eb-garamond-latin-400-normal.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'EB Garamond'; src: url('/fonts/eb-garamond-latin-400-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; }
+@font-face { font-family: 'EB Garamond'; src: url('/fonts/eb-garamond-latin-500-normal.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'Nanum Pen Script'; src: url('/fonts/nanum-pen-script-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Special Elite'; src: url('/fonts/special-elite-latin-400-normal.woff2') format('woff2'); }
+
+:root {
+  --display: 'Cormorant Garamond', Georgia, serif; --serif: 'EB Garamond', Georgia, serif;
+  --hand: 'Nanum Pen Script', cursive; --type: 'Special Elite', 'Courier New', monospace;
+  --ink: #2c2520; --ink-soft: #5b4f45; --muted: #8a7c6e; --paper: #f5efe2;
+  --rose: #b8543f; --sage: #6f876e; --ochre: #b3833e; --slate: #6f8193;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body { background: #cfd8c8 url('/materials/desk-gouache.jpg') center/cover; color: var(--ink); font-family: var(--serif); }
+
+/* ── stage: fixed 1600×900, scaled to the window ── */
+#viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+#stage { position: relative; width: 1600px; height: 900px; flex: none; transform-origin: center; }
+.slide { position: absolute; inset: 0; border-radius: 6px; overflow: hidden;
+  background: var(--paper) url('/materials/paper-cold-press.jpg') center/cover;
+  box-shadow: 0 30px 70px rgba(40, 34, 25, .28), 0 2px 0 rgba(255,255,255,.4) inset;
+  opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
+.slide.active { opacity: 1; visibility: visible; transition: opacity .6s ease; }
+.slide::before { content: ""; position: absolute; inset: 0; background: rgba(246, 240, 228, .62); pointer-events: none; }
+.slide::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 120px rgba(120, 95, 60, .16); }
+
+[data-b] { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
+[data-b].on { opacity: 1; transform: none; }
+
+.eyebrow { position: absolute; left: 96px; top: 64px; font: 15px/1 var(--type); letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+.eyebrow b { color: var(--rose); font-weight: 400; }
+h1, h2 { font-family: var(--display); font-weight: 500; margin: 0; letter-spacing: -.01em; }
+h2 { position: absolute; left: 96px; top: 98px; font-size: 66px; line-height: 1.02; }
+h2 em { font-style: italic; color: var(--rose); font-weight: 400; }
+.hand { font-family: var(--hand); }
+.folio { position: absolute; bottom: 30px; right: 44px; font: italic 18px var(--display); color: var(--muted); }
+.sprig { position: absolute; pointer-events: none; opacity: .85; }
+
+/* tape */
+.tape { position: absolute; width: 110px; height: 32px; background: center/100% 100% no-repeat; opacity: .9; z-index: 3; }
+.tape.rose { background-image: url('/materials/tape-rose.png'); }
+.tape.sage { background-image: url('/materials/tape-sage.png'); }
+.tape.ochre { background-image: url('/materials/tape-ochre.png'); }
+
+/* ── 1 · problem ── */
+.q { position: absolute; left: 96px; top: 100px; width: 900px; font: 500 64px/1.05 var(--display); }
+.q em { font-style: italic; font-weight: 400; color: var(--slate); }
+.frag { position: absolute; width: 360px; padding: 26px 28px 24px; background: #fbf8f0; border-radius: 3px;
+  box-shadow: 0 12px 26px rgba(60, 45, 30, .18), 0 1px 2px rgba(60,45,30,.2);
+  transition: transform 1s cubic-bezier(.6,.05,.25,1), opacity .9s ease, left 1s cubic-bezier(.6,.05,.25,1), top 1s cubic-bezier(.6,.05,.25,1); }
+.frag .app { display: flex; align-items: center; gap: 12px; font: 14px var(--type); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.frag .app svg { width: 46px; height: 46px; flex: none; }
+.frag .line { margin-top: 16px; font: italic 31px/1.12 var(--display); color: var(--ink); }
+.frag .sub { margin-top: 12px; font: 25px/1.1 var(--hand); color: var(--ink-soft); }
+.frag .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 16px; }
+.frag .thumbs img, .frag .thumbs span { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; display: block; }
+.frag .thumbs span { background: #d9d2c3; display: grid; place-items: center; font: 14px var(--type); color: #7a6e60; }
+.frag .wave { display: flex; align-items: center; gap: 4px; height: 58px; margin-top: 16px; }
+.frag .wave i { display: block; width: 5px; border-radius: 3px; background: var(--slate); opacity: .75; }
+.frag .wave em { margin-left: 12px; font: 14px var(--type); color: var(--muted); font-style: normal; }
+.frag .scrawl { margin-top: 14px; padding: 12px 14px; background: #fff7c9; font: 27px/1.05 var(--hand); color: #574a2a; transform: rotate(-1deg); box-shadow: 0 2px 4px rgba(0,0,0,.08); }
+.frag.f1 { left: 110px; top: 340px; transform: rotate(-4deg); }
+.frag.f2 { left: 620px; top: 420px; transform: rotate(2.5deg); }
+.frag.f3 { left: 1130px; top: 300px; transform: rotate(-1.5deg); }
+.frag.f1 { animation: drift1 7s ease-in-out infinite alternate; }
+.frag.f2 { animation: drift2 8s ease-in-out infinite alternate; }
+.frag.f3 { animation: drift3 6.5s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: rotate(-6deg) translate(-8px, 10px); } }
+@keyframes drift2 { to { transform: rotate(4deg) translate(10px, -8px); } }
+@keyframes drift3 { to { transform: rotate(-3deg) translate(6px, 12px); } }
+.scatter-line { position: absolute; left: 96px; bottom: 90px; width: 1100px; font: italic 34px/1.25 var(--display); color: var(--ink-soft); }
+.scatter-line .hand { font-style: normal; font-size: 38px; color: var(--rose); margin-left: 16px; }
+
+.slide[data-build="2"] .frag { animation: none; opacity: 0; left: 640px; top: 360px; transform: rotate(0) scale(.35); }
+.slide[data-build="2"] .scatter-line, .slide[data-build="2"] .q { opacity: 0; transform: translateY(-12px); transition: opacity .5s, transform .5s; }
+.q, .scatter-line { transition: opacity .5s, transform .5s; }
+.solution { position: absolute; inset: 0; pointer-events: none; }
+.solution .spread { position: absolute; right: 90px; top: 150px; width: 820px; transform: rotate(1.5deg); background: #fff; padding: 10px; box-shadow: 0 22px 48px rgba(50,38,25,.3); }
+.solution .spread img { display: block; width: 100%; }
+.solution .spread .tape { top: -14px; left: 350px; transform: rotate(-3deg); }
+.solution .txt { position: absolute; left: 96px; top: 150px; width: 560px; }
+.solution .kicker { font: 15px var(--type); letter-spacing: .28em; text-transform: uppercase; color: var(--rose); }
+.solution h1 { font-size: 104px; line-height: .95; margin-top: 18px; }
+.solution p { font: 30px/1.35 var(--serif); color: var(--ink-soft); margin: 28px 0 0; }
+.solution .tag { margin-top: 34px; white-space: nowrap; font: 40px/1.1 var(--hand); color: var(--sage); transform: rotate(-2deg); display: inline-block; }
+.solution .trio { display: flex; gap: 12px; margin-top: 30px; }
+.solution .trio span { font: 15px var(--type); letter-spacing: .1em; padding: 8px 12px; border: 1px solid #cdbfa9; border-radius: 30px; color: var(--ink-soft); background: rgba(255,255,255,.4); }
+
+/* ── 2 · demo ── */
+.demo-title { position: absolute; left: 96px; top: 120px; font: 500 120px/1 var(--display); }
+.demo-title em { font-style: italic; font-weight: 400; color: var(--rose); }
+.flow { position: absolute; left: 96px; right: 96px; top: 380px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+.stamp { position: relative; padding: 30px 28px 28px; background: #fbf8f0; border: 1px dashed #cbbba2; border-radius: 4px; min-height: 250px; }
+.stamp .n { font: 18px var(--type); color: var(--rose); }
+.stamp h3 { font: 500 44px/1 var(--display); margin: 14px 0 14px; }
+.stamp p { font: 23px/1.35 var(--serif); color: var(--ink-soft); margin: 0; }
+.stamp:not(:last-child)::after { content: "→"; position: absolute; right: -28px; top: 44%; font: 30px var(--display); color: var(--muted); }
+.go { position: absolute; left: 96px; bottom: 90px; display: inline-flex; align-items: center; gap: 16px; padding: 18px 30px; background: #4b3428; color: #f7efe1; text-decoration: none; font: italic 30px var(--display); border-radius: 3px; box-shadow: 0 10px 22px rgba(60,40,25,.25); }
+.go small { font: 14px var(--type); letter-spacing: .12em; opacity: .75; font-style: normal; }
+.switch { position: absolute; left: 600px; bottom: 100px; font: 36px var(--hand); color: var(--sage); transform: rotate(-2deg); }
+
+/* ── 3a · how I build ── */
+.sub2 { position: absolute; left: 96px; top: 178px; font: italic 28px var(--display); color: var(--ink-soft); }
+.chain { position: absolute; left: 96px; right: 96px; top: 262px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 22px; }
+.ticket { position: relative; background: #fbf8f0; padding: 20px 18px 18px; border-top: 5px solid var(--sage); border-radius: 2px; box-shadow: 0 8px 18px rgba(60,45,30,.14); min-height: 210px; }
+.ticket:nth-child(2n) { border-top-color: var(--ochre); }
+.ticket:nth-child(3n) { border-top-color: var(--rose); }
+.ticket code { font: 19px var(--type); color: var(--ink); }
+.ticket p { font: 21px/1.3 var(--serif); color: var(--ink-soft); margin: 12px 0 0; }
+.ticket .step { position: absolute; top: 14px; right: 14px; font: 13px var(--type); color: var(--muted); }
+.ticket:not(:last-child)::after { content: "→"; position: absolute; right: -19px; top: 40%; font: 22px var(--display); color: var(--muted); z-index: 2; }
+.skills-tag { position: absolute; left: 96px; top: 494px; font: 29px var(--hand); color: var(--rose); }
+.stats { position: absolute; left: 96px; right: 96px; top: 560px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 22px; }
+.stat { border-left: 2px solid #d5c7b0; padding: 4px 0 4px 20px; }
+.stat b { display: block; font: 500 64px/1 var(--display); color: var(--ink); }
+.stat span { display: block; margin-top: 8px; font: 20px/1.3 var(--serif); color: var(--ink-soft); }
+.pm-line { position: absolute; left: 96px; bottom: 64px; right: 96px; font: italic 27px/1.3 var(--display); color: var(--ink-soft); }
+.pm-line b { font-style: normal; font-weight: 500; color: var(--ink); }
+
+/* ── 3b · pipeline ── */
+.pipe { position: absolute; left: 70px; right: 70px; top: 250px; height: 290px; }
+.pipe svg.links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.node { position: absolute; width: 190px; min-height: 118px; padding: 14px 14px 12px; background: #fbf8f0; border-radius: 3px; box-shadow: 0 6px 14px rgba(60,45,30,.14); }
+.node b { display: block; font: 500 25px/1.02 var(--display); }
+.node span { display: block; margin-top: 8px; font: 16px/1.25 var(--serif); color: var(--ink-soft); }
+.node.ai { background: #f3ede3; outline: 1.5px solid var(--slate); }
+.node.rule { outline: 1.5px dashed var(--rose); }
+.legend { position: absolute; left: 96px; top: 190px; display: flex; gap: 28px; font: 15px var(--type); color: var(--muted); letter-spacing: .06em; }
+.legend i { display: inline-block; width: 16px; height: 12px; margin-right: 8px; vertical-align: -1px; }
+.legend .l-ai i { outline: 1.5px solid var(--slate); background: #f3ede3; }
+.legend .l-rule i { outline: 1.5px dashed var(--rose); }
+.legend .l-det i { background: #fbf8f0; box-shadow: 0 0 0 1px #d5c7b0; }
+.grounding { position: absolute; left: 96px; top: 588px; width: 700px; }
+.grounding h4, .eval h4 { margin: 0 0 14px; font: 15px var(--type); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.grounding ul { list-style: none; margin: 0; padding: 0; }
+.grounding li { font: 22px/1.3 var(--serif); color: var(--ink-soft); margin-bottom: 10px; padding-left: 22px; position: relative; }
+.grounding li::before { content: "✦"; position: absolute; left: 0; top: 1px; font-size: 14px; color: var(--ochre); }
+.grounding li b { color: var(--ink); font-weight: 500; }
+.eval { position: absolute; right: 96px; top: 588px; width: 690px; background: #fbf8f0; padding: 22px 26px 18px; box-shadow: 0 8px 18px rgba(60,45,30,.12); }
+.eval table { width: 100%; border-collapse: collapse; font: 20px var(--serif); }
+.eval th { text-align: left; font: 14px var(--type); color: var(--muted); font-weight: 400; padding: 0 0 8px; letter-spacing: .06em; }
+.eval td { padding: 8px 0; border-top: 1px solid #e3d8c6; color: var(--ink-soft); }
+.eval td.num { font: 500 30px var(--display); color: var(--ink); }
+.eval td.win { color: var(--sage); }
+.eval .caveat { margin-top: 10px; font: 18px/1.25 var(--hand); font-size: 22px; color: var(--rose); }
+
+/* ── 3c · taste ── */
+.cols { position: absolute; left: 96px; right: 96px; top: 236px; display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 44px; }
+.col h4 { margin: 0 0 18px; font: 15px var(--type); letter-spacing: .2em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.route { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; margin-bottom: 18px; }
+.route .pic { height: 130px; display: grid; place-items: center; }
+.route .pic img { max-width: 130px; max-height: 130px; filter: drop-shadow(0 6px 10px rgba(60,45,30,.2)); }
+.route .pic.print img { background: #fff; padding: 5px; transform: rotate(-2deg); }
+.route .pic.person { font: 54px var(--display); color: var(--muted); }
+.route b { display: block; font: 500 27px/1.05 var(--display); }
+.route span { display: block; font: 19px/1.3 var(--serif); color: var(--ink-soft); margin-top: 6px; }
+.route small { display: block; font: 14px var(--type); color: var(--muted); margin-top: 6px; letter-spacing: .04em; }
+.drawer { position: relative; height: 210px; background: #efe6d4; border-radius: 4px; box-shadow: inset 0 3px 10px rgba(90,70,40,.18); }
+.drawer img { position: absolute; filter: drop-shadow(0 5px 8px rgba(60,45,30,.2)); }
+.drawer .nope { position: absolute; right: 18px; bottom: 16px; width: 92px; opacity: .45; filter: grayscale(.4); }
+.drawer .x { position: absolute; right: 22px; bottom: 26px; font: 60px var(--hand); color: var(--rose); line-height: 1; transform: rotate(-8deg); }
+.rank { margin-top: 20px; font: 24px/1.35 var(--serif); color: var(--ink-soft); }
+.rank b { font-weight: 500; color: var(--ink); }
+.rank .arrow { color: var(--rose); margin: 0 6px; }
+.prov { background: #fbf8f0; padding: 20px 22px; box-shadow: 0 8px 18px rgba(60,45,30,.12); }
+.prov p { margin: 0 0 14px; font: 22px/1.35 var(--serif); color: var(--ink-soft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chips span { font: 14px var(--type); padding: 6px 10px; border-radius: 20px; letter-spacing: .06em; }
+.chips .live { background: #dfe8dc; color: #3f5a3e; } .chips .fix { background: #f2e4c8; color: #7a5a22; } .chips .fb { background: #eadbd4; color: #7c3e30; }
+.stackbar { position: absolute; left: 96px; right: 96px; bottom: 116px; display: flex; flex-wrap: wrap; gap: 10px 26px; font: 16px var(--type); color: var(--muted); letter-spacing: .05em; border-top: 1px solid #d9ccb8; padding-top: 16px; }
+.quote { position: absolute; left: 96px; right: 96px; bottom: 48px; font: italic 32px/1.2 var(--display); color: var(--ink); }
+.quote em { color: var(--rose); }
+
+/* ── 4 · challenge ── */
+.before { position: absolute; left: 96px; top: 244px; width: 640px; height: 455px; background: #fff; border-radius: 10px; padding: 26px 30px; box-shadow: 0 10px 30px rgba(0,0,0,.18);
+  font-family: Arial, Helvetica, sans-serif; transition: all .8s cubic-bezier(.6,.05,.25,1); }
+.before .t { text-align: center; font-weight: 700; font-size: 28px; color: #1f2937; }
+.before .d { text-align: center; font-size: 14px; color: #6b7280; margin-top: 4px; }
+.before .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+.before .grid figure { margin: 0; }
+.before .grid img { display: block; width: 100%; height: 120px; object-fit: cover; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,.18); }
+.before .grid figcaption { font-size: 12px; color: #6b7280; margin-top: 5px; text-align: center; }
+.before .ai { margin-top: 12px; padding: 8px 12px; background: #eef2ff; border-radius: 8px; font-size: 13px; color: #3730a3; line-height: 1.35; }
+.before-label { position: absolute; left: 96px; top: 712px; font: 26px var(--hand); color: var(--muted); transition: all .8s; }
+.slide[data-build="2"] .before-label, .slide[data-build="3"] .before-label { top: 474px !important; }
+.after { position: absolute; right: 96px; top: 230px; width: 700px; background: #fff; padding: 8px; rotate: 1deg; box-shadow: 0 18px 40px rgba(50,38,25,.28); }
+.after img { display: block; width: 100%; }
+.after .tape { top: -14px; left: 300px; }
+.after-label { position: absolute; right: 96px; top: 700px; font: 26px var(--hand); color: var(--sage); }
+.steps4 { position: absolute; right: 96px; top: 238px; width: 720px; }
+.beat { display: grid; grid-template-columns: 150px 1fr; gap: 20px; margin-bottom: 26px; }
+.beat .k { font: 15px var(--type); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); padding-top: 8px; }
+.beat .v { font: 26px/1.32 var(--serif); color: var(--ink-soft); }
+.beat .v b { color: var(--ink); font-weight: 500; }
+.beat .v .big { font: italic 500 34px/1.15 var(--display); color: var(--ink); }
+/* build 2: before shrinks, after & fix arrive */
+.slide[data-build="2"] .steps4, .slide[data-build="3"] .steps4 { opacity: 0; pointer-events: none; }
+.steps4 { transition: opacity .5s; }
+.slide[data-build="2"] .before, .slide[data-build="3"] .before { width: 380px; height: 212px; transform: scale(1); left: 96px; top: 250px; padding: 14px 16px; overflow: hidden; }
+.slide[data-build="2"] .before .grid img, .slide[data-build="3"] .before .grid img { height: 52px; }
+.slide[data-build="2"] .before .ai, .slide[data-build="3"] .before .ai, .slide[data-build="2"] .before figcaption, .slide[data-build="3"] .before figcaption { display: none; }
+.slide[data-build="2"] .before .t, .slide[data-build="3"] .before .t { font-size: 18px; }
+.slide[data-build="2"] .before-label, .slide[data-build="3"] .before-label { top: 530px; font-size: 22px; }
+.fixes { position: absolute; left: 96px; top: 540px; width: 640px; }
+.fixes li { font: 23px/1.3 var(--serif); color: var(--ink-soft); margin-bottom: 8px; list-style: none; padding-left: 28px; position: relative; }
+.fixes ul { margin: 0; padding: 0; }
+.fixes li::before { content: "✓"; position: absolute; left: 0; color: var(--sage); font-family: var(--hand); font-size: 30px; line-height: 1; }
+.principle { position: absolute; left: 520px; top: 300px; width: 250px; padding: 18px 16px; border: 2px solid var(--rose); color: var(--rose); text-align: center; font: 500 30px/1.1 var(--display); rotate: -5deg; background: rgba(250, 244, 234, .8); }
+.principle small { display: block; font: 13px var(--type); letter-spacing: .2em; margin-bottom: 6px; }
+.sticker-story { position: absolute; left: 96px; right: 96px; bottom: 36px; display: flex; align-items: center; gap: 18px; background: #fbf8f0; padding: 12px 20px; box-shadow: 0 6px 14px rgba(60,45,30,.12); font: 21px/1.3 var(--serif); color: var(--ink-soft); }
+.sticker-story img { height: 54px; }
+.sticker-story b { color: var(--ink); font-weight: 500; }
+
+/* ── 5 · close ── */
+.close-img { position: absolute; right: 80px; top: 110px; width: 900px; background: #fff; padding: 8px; transform: rotate(-1.2deg); box-shadow: 0 20px 44px rgba(50,38,25,.28); }
+.close-img img { display: block; width: 100%; }
+.close-img .tape { top: -12px; left: 60px; transform: rotate(-6deg); }
+.close-txt { position: absolute; left: 96px; top: 250px; width: 520px; }
+.close-txt h1 { font-size: 110px; line-height: .95; }
+.close-txt h1 em { font-style: italic; font-weight: 400; color: var(--rose); }
+.close-txt p { font: 28px/1.35 var(--serif); color: var(--ink-soft); margin: 30px 0 0; }
+.close-txt .sig { margin-top: 44px; font: 44px var(--hand); color: var(--sage); }
+
+/* ── presenter chrome (not scaled) ── */
+#dots { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); display: flex; gap: 8px; z-index: 20; opacity: .55; }
+#dots i { width: 8px; height: 8px; border-radius: 50%; background: #6a5c4d; opacity: .35; cursor: pointer; }
+#dots i.on { opacity: 1; }
+#timer { position: fixed; top: 12px; right: 16px; font: 16px var(--type); color: #4b3f34; background: rgba(250,245,235,.85); padding: 6px 10px; border-radius: 4px; z-index: 20; display: none; }
+#timer.show { display: block; } #timer.late { color: var(--rose); }
+#notes { position: fixed; left: 0; right: 0; bottom: 0; max-height: 34vh; overflow: auto; background: rgba(33, 28, 24, .94); color: #f4ecdf; padding: 16px 28px 26px; font: 19px/1.45 var(--serif); z-index: 30; display: none; }
+#notes.show { display: block; }
+#notes .meta { font: 13px var(--type); letter-spacing: .15em; color: #c9b79e; margin-bottom: 6px; text-transform: uppercase; }
+#help { position: fixed; top: 12px; left: 16px; font: 13px var(--type); color: #4b3f34; background: rgba(250,245,235,.85); padding: 6px 10px; border-radius: 4px; z-index: 20; transition: opacity 1s; }
+aside.notes { display: none; }
+</style>
+</head>
+<body>
+<div id="viewport"><div id="stage">
+
+<!-- ═════════ 1 · PROBLEM → SOLUTION ═════════ -->
+<section class="slide" data-builds="2" data-label="Problem">
+  <div class="q">When did you last look back at<br><em>a day you loved?</em></div>
+
+  <div class="frag f1">
+    <div class="app"><svg viewBox="0 0 48 48" fill="none" stroke="#6f8193" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.5c0-2 1.4-3.4 3.4-3.5l5-.2 3-4.3h11.4l3 4.3 5.1.2c2 .1 3.4 1.5 3.4 3.5v19c0 2-1.6 3.6-3.6 3.6H10.6C8.6 39.1 7 37.5 7 35.5z"/><circle cx="24" cy="25.5" r="7.6"/><path d="M36 18.6h.1"/></svg>Camera roll</div>
+    <div class="line">Hundreds of photos, never sorted.</div>
+    <div class="thumbs"><img src="/memories/rainy-day/rain-walk.jpg" alt=""><img src="/memories/rainy-day/film-shop.jpg" alt=""><img src="/memories/rainy-day/window.jpg" alt=""><span>+312</span></div>
+    <div class="sub">“I'll organize these later.”</div>
+  </div>
+
+  <div class="frag f2">
+    <div class="app"><svg viewBox="0 0 48 48" fill="none" stroke="#b8543f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="6" width="14" height="24" rx="7"/><path d="M10.5 22.5c0 7.5 6 13.5 13.5 13.5s13.5-6 13.5-13.5M24 36v6.5M17 42.5h14"/></svg>Voice memos</div>
+    <div class="line">A voice note you never replayed.</div>
+    <div class="wave" aria-hidden="true"></div>
+    <div class="sub">recorded in the rain, 0 plays</div>
+  </div>
+
+  <div class="frag f3">
+    <div class="app"><svg viewBox="0 0 48 48" fill="none" stroke="#b3833e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7.5h19l7 7v26H11z"/><path d="M30 7.5v7h7M17 22h14M17 28h14M17 34h8"/></svg>Notes</div>
+    <div class="line">Half a sentence from a day that mattered.</div>
+    <div class="scrawl">rainy. film shop w Shelly. churros??</div>
+  </div>
+
+  <div class="scatter-line" data-b="1">You didn't forget the day. It's just scattered across three apps. <span class="hand">sound familiar?</span></div>
+
+  <div class="solution" data-b="2">
+    <div class="txt">
+      <div class="kicker">The solution</div>
+      <h1>Memory Atlas</h1>
+      <p>Drop in photos, voice and words. It weaves them into one visual memoir, and you keep the authorship.</p>
+      <div class="trio"><span>photos</span><span>voice</span><span>words</span><span>→ one page</span></div>
+      <div class="tag">AI does the sorting. You keep the taste.</div>
+    </div>
+    <div class="spread"><span class="tape sage"></span><img src="/present/after-spread.jpg" alt="The woven rainy-day spread"></div>
+  </div>
+  <div class="folio">i</div>
+
+  <aside class="notes" data-b="0">~0:00–0:15 · Ask the question, pause. “Here's what my Saturday looked like on my phone.” Point at the three cards: photos I never sorted, a voice memo I never replayed, a half-sentence in Notes.</aside>
+  <aside class="notes" data-b="1">~0:15–0:25 · “I didn't forget the day. It's scattered across three apps. And the slow part — choosing, writing, designing — never happens.”</aside>
+  <aside class="notes" data-b="2">~0:25–0:45 · “Memory Atlas turns those fragments into one visual memoir. The AI does the tedious sorting; I keep the authorship and the taste.” → “Let me show you.” Switch tab.</aside>
+</section>
+
+<!-- ═════════ 2 · LIVE DEMO ═════════ -->
+<section class="slide" data-builds="0" data-label="Demo">
+  <div class="eyebrow"><b>02</b> · live demo</div>
+  <div class="demo-title">Let me show you <em>one day.</em></div>
+  <div class="flow">
+    <div class="stamp"><div class="n">01</div><h3>Capture</h3><p>Photos, voice, words. Each one: keep the original, or make it art.</p></div>
+    <div class="stamp"><div class="n">02</div><h3>Weave</h3><p>It listens, asks one short question, then picks art and stickers — and says why.</p></div>
+    <div class="stamp"><div class="n">03</div><h3>Spread</h3><p>Every word is editable. Hover anything to see where it came from.</p></div>
+    <div class="stamp"><div class="n">04</div><h3>Calendar</h3><p>The day comes back, decorated with its own art.</p></div>
+  </div>
+  <a class="go" href="http://localhost:3000/" target="_blank" rel="noopener">Open Memory Atlas <small>LOCALHOST:3000 ↗</small></a>
+  <div class="switch">switching tabs →</div>
+  <div class="folio">ii</div>
+  <aside class="notes" data-b="0">0:45–2:45 · SCRIPT: (1) upload 4 rainy-day photos; window + churros → “Make it art”, rest keep original. (2) record voice → “Turn into words”; type one short note. (3) Weave — narrate: “listening… it asks me one question” (press Y for Shelly) “…now it chooses art and stickers, and shows why”. (4) spread: hover one photo for provenance, edit one line. (5) Calendar: churros on Sept 12. Backup recording in the 3rd tab.</aside>
+</section>
+
+<!-- ═════════ 3a · HOW I BUILD ═════════ -->
+<section class="slide" data-builds="2" data-label="How I build">
+  <div class="eyebrow"><b>03</b> · technical stack · how I build</div>
+  <h2>I don't prompt. <em>I run a process.</em></h2>
+  <div class="chain">
+    <div class="ticket"><span class="step">01</span><code>grill-with-docs</code><p>The agent interviews me until every term and edge case is pinned down.</p></div>
+    <div class="ticket"><span class="step">02</span><code>to-spec</code><p>Interview → PRD, MVP scope and measurable acceptance criteria.</p></div>
+    <div class="ticket"><span class="step">03</span><code>to-tickets</code><p>Spec → thin vertical slices an agent can finish in one sitting.</p></div>
+    <div class="ticket"><span class="step">04</span><code>tdd · implement</code><p>Tests first, then code. The agent can't call a slice done while tests fail.</p></div>
+    <div class="ticket"><span class="step">05</span><code>code-review</code><p>A second pass checks every diff against the spec and the ADRs.</p></div>
+    <div class="ticket"><span class="step">06</span><code>handoff</code><p>Written handoffs, so context survives across sessions and agents.</p></div>
+  </div>
+  <div class="skills-tag" data-b="1">Matt Pocock's agent skills · 38 installed · Codex + Claude, orchestrated</div>
+  <div class="stats" data-b="1">
+    <div class="stat"><b>9</b><span>design docs: PRD, MVP, Design, Architecture, Research, Evals…</span></div>
+    <div class="stat"><b>12</b><span>architecture decision records</span></div>
+    <div class="stat"><b>33</b><span>logged product decisions, each with its “why”</span></div>
+    <div class="stat"><b>1</b><span>shared domain language (CONTEXT.md) for humans and agents</span></div>
+    <div class="stat"><b>60+</b><span>automated tests: pytest · vitest · Playwright</span></div>
+  </div>
+  <div class="pm-line" data-b="2"><b>The AI-PM skill:</b> turning fuzzy intent into specs, guardrails and acceptance tests that agents can execute — and that I can verify.</div>
+  <div class="folio">iii</div>
+  <aside class="notes" data-b="0">~2:45–3:05 · “The first thing I want to show isn't the code, it's how I work with agents.” Walk the chain in one breath: grill → spec → tickets → test-first → review → handoff.</aside>
+  <aside class="notes" data-b="1">“Everything is written down: nine design docs, twelve ADRs, thirty-three decisions with their reasons, one shared vocabulary so the agents and I mean the same thing by ‘Moment’ or ‘Fragment’.”</aside>
+  <aside class="notes" data-b="2">“That's the AI PM skill I care most about: making intent executable and verifiable.”</aside>
+</section>
+
+<!-- ═════════ 3b · PIPELINE ═════════ -->
+<section class="slide" data-builds="2" data-label="Pipeline">
+  <div class="eyebrow"><b>03</b> · technical stack · the pipeline</div>
+  <h2>Reason about the story <em>before</em> rendering art.</h2>
+  <div class="legend"><span class="l-det"><i></i>deterministic</span><span class="l-ai"><i></i>model step · validated output</span><span class="l-rule"><i></i>author's rules</span></div>
+  <div class="pipe">
+    <svg class="links" viewBox="0 0 1460 290" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke="#b9a88f" stroke-width="2" stroke-dasharray="5 6">
+        <path d="M190 70 H 240"/><path d="M430 70 H 480"/><path d="M670 70 H 720"/><path d="M910 70 H 960"/><path d="M1150 70 H 1200"/>
+        <path d="M1390 70 C 1455 70, 1455 232, 1390 232"/>
+        <path d="M1200 232 H 1150"/><path d="M960 232 H 910"/>
+      </g>
+    </svg>
+    <div class="node" style="left:0;top:18px"><b>Fragments</b><span>photo · voice · text, originals kept</span></div>
+    <div class="node" style="left:240px;top:18px"><b>Evidence</b><span>EXIF time · SHA-256 · perceptual hash · palette</span></div>
+    <div class="node ai" style="left:480px;top:18px"><b>Memory atoms</b><span>what each fragment shows, tied to source IDs</span></div>
+    <div class="node" style="left:720px;top:18px"><b>Moments</b><span>near-duplicates grouped, bursts collapsed</span></div>
+    <div class="node ai" style="left:960px;top:18px"><b>Story roles</b><span>Anchor · Discovery · Shelter · Closing</span></div>
+    <div class="node" style="left:1200px;top:18px"><b>Bundle</b><span>role-aware retrieval + weighted marginal gain</span></div>
+    <div class="node ai" style="left:1200px;top:175px"><b>Verifier</b><span>judges the whole set; ≤ 1 validated swap</span></div>
+    <div class="node rule" style="left:960px;top:175px"><b>Art + stickers</b><span>art director rules · sticker ranking</span></div>
+    <div class="node" style="left:720px;top:175px"><b>Spread</b><span>fixed, typed visual plan → renderer</span></div>
+    <div class="node" style="left:0;top:180px;width:640px;min-height:0;background:transparent;box-shadow:none;padding:6px 0"><b style="font-size:22px">Listen &amp; ask, in parallel</b><span>voice quietly transcribed (Whisper) · one clarifying question, only when the photos can't answer it</span></div>
+  </div>
+  <div class="grounding" data-b="1">
+    <h4>Grounded in research — no model training</h4>
+    <ul>
+      <li><b>BundleWeaver</b> (Shan et al., 2026) — story-bundle selection, adapted as “BundleWeaver-lite”</li>
+      <li><b>SigLIP 2</b> image–text embeddings for role retrieval, with a labelled fallback</li>
+      <li><b>Whisper</b> speech-to-text · <b>gpt-image-1</b> edits for the art skills</li>
+      <li>One contract front to back: <b>Pydantic → OpenAPI → TypeScript</b></li>
+    </ul>
+  </div>
+  <div class="eval" data-b="2">
+    <h4>Eval E1 · does the selection repeat itself?</h4>
+    <table>
+      <tr><th></th><th>SET F1</th><th>REPEATED SHOTS</th></tr>
+      <tr><td>Baseline (similarity ranking)</td><td class="num">0.33–0.50</td><td class="num">2</td></tr>
+      <tr><td class="win">BundleWeaver-lite</td><td class="num win">1.00</td><td class="num win">0</td></tr>
+    </table>
+    <div class="caveat">3 labelled cases, offline fixture: it proves the mechanism, not general accuracy. Next: more days, live model.</div>
+  </div>
+  <div class="folio">iv</div>
+  <aside class="notes" data-b="0">~3:05–3:30 · “The hard part isn't drawing — it's deciding what belongs together and what role each fragment plays.” Trace the arrows: evidence → atoms → moments → roles → bundle → verifier → rules → spread. Point at the legend: model steps are validated; they can only reference real source IDs.</aside>
+  <aside class="notes" data-b="1">“It's grounded in recent research — BundleWeaver for story selection, SigLIP 2, Whisper — adapted, not trained.”</aside>
+  <aside class="notes" data-b="2">“And I measure it. On a tiny labelled set, plain similarity ranking wasted slots on repeated shots; the bundle method didn't. I'm upfront that three cases prove the mechanism, not accuracy.” (Say “designed for SigLIP 2 / live model; the demo runs on the offline fixture” if asked.)</aside>
+</section>
+
+<!-- ═════════ 3c · TASTE ═════════ -->
+<section class="slide" data-builds="1" data-label="Taste">
+  <div class="eyebrow"><b>03</b> · technical stack · human flavor</div>
+  <h2>Taste is a rule set, <em>not a prompt.</em></h2>
+  <div class="cols">
+    <div class="col">
+      <h4>Collected art skills, routed by rules</h4>
+      <div class="route"><div class="pic"><img src="/memories/rainy-day/churros-cutout.png" alt=""></div><div><b>Clear object → tape collage</b><span>cut out by hand-edge, placed beside its original</span><small>make-tape-collage (MIT)</small></div></div>
+      <div class="route"><div class="pic print"><img src="/memories/rainy-day/window-gathered.jpg" alt=""></div><div><b>Blended scenery → gathered scenes</b><span>half real photo, half drawing</span><small>own prompt · original skill is non-commercial, so not vendored</small></div></div>
+      <div class="route"><div class="pic person">✕</div><div><b>A real person → never redrawn</b><span>identity stays original; max 2 art pieces per page</span></div></div>
+    </div>
+    <div class="col">
+      <h4>The sticker drawer</h4>
+      <div class="drawer">
+        <img src="/stickers/umbrella-yellow.png" alt="" style="left:20px;top:22px;width:120px;transform:rotate(-8deg)">
+        <img src="/stickers/cloud-soft.png" alt="" style="left:150px;top:30px;width:130px">
+        <img src="/stickers/ginkgo-leaf.png" alt="" style="left:60px;top:116px;width:90px;transform:rotate(12deg)">
+        <img class="nope" src="/stickers/eggs-benedict-watercolor.png" alt="">
+        <span class="x">✕</span>
+      </div>
+      <div class="rank"><b>content</b><span class="arrow">›</span><b>mood</b><span class="arrow">›</span><b>colour fit</b><br>one per kind · max 3 · every pick explains itself</div>
+    </div>
+    <div class="col">
+      <h4>Provenance &amp; honesty</h4>
+      <div class="prov">
+        <p>Hover any element → the exact photo, voice clip or words it came from.</p>
+        <p>Every model output is labelled with where it really came from:</p>
+        <div class="chips"><span class="live">live model</span><span class="fix">offline fixture</span><span class="fb">fallback</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="stackbar"><span>Next.js 16 · React 19 · TypeScript · Tailwind 4</span><span>FastAPI · Pydantic</span><span>SQLite</span><span>SigLIP 2 · Whisper · gpt-image-1</span><span>Playwright · pytest · vitest</span></div>
+  <div class="quote" data-b="1">“The model is a component. <em>The product</em> is the rules, the evals, and the taste around it.”</div>
+  <div class="folio">v</div>
+  <aside class="notes" data-b="0">~3:30–4:00 · “To add human flavor I collected artist-made skills and routed them with explicit rules: a clear object becomes tape collage, scenery becomes gathered scenes, a real person is never redrawn. Stickers are ranked content over mood over colour, and each pick says why. And the product never pretends: every output is labelled live, fixture or fallback.”</aside>
+  <aside class="notes" data-b="1">Land the line. Then: “Which brings me to the biggest challenge.”</aside>
+</section>
+
+<!-- ═════════ 4 · CHALLENGE ═════════ -->
+<section class="slide" data-builds="3" data-label="Challenge">
+  <div class="eyebrow"><b>04</b> · challenges &amp; solutions</div>
+  <h2>It worked. <em>It looked like a PowerPoint.</em></h2>
+
+  <div class="before" aria-label="Recreated first version: a plain photo grid">
+    <div class="t">Rainy Day Memories</div>
+    <div class="d">Saturday, September 12, 2026 · 4 photos</div>
+    <div class="grid">
+      <figure><img src="/memories/rainy-day/rain-walk.jpg" alt=""><figcaption>Walking in the rain</figcaption></figure>
+      <figure><img src="/memories/rainy-day/film-shop.jpg" alt=""><figcaption>Film shop</figcaption></figure>
+      <figure><img src="/memories/rainy-day/window.jpg" alt=""><figcaption>Restaurant window</figcaption></figure>
+      <figure><img src="/memories/rainy-day/churros-photo.jpg" alt=""><figcaption>Churros</figcaption></figure>
+    </div>
+    <div class="ai">✨ Today was a wonderful day full of adventure! Despite the rain, we explored a charming film shop and enjoyed delicious churros.</div>
+  </div>
+  <div class="before-label">v0 · first implementation (recreated)</div>
+
+  <div class="steps4">
+    <div class="beat" data-b="1"><div class="k">Symptom</div><div class="v">Every fragment placed, every caption written — efficient, and <b>nobody would keep it.</b></div></div>
+    <div class="beat" data-b="1"><div class="k">Looked out</div><div class="v">Read user reviews of AIGC photo apps; studied real collages people make in <b>醒图 Retouchpic.</b></div></div>
+    <div class="beat" data-b="1"><div class="k">Diagnosis</div><div class="v"><span class="big">I optimized for efficiency and over-trusted AI's taste.</span><br>People don't want an AI's day. They want <b>their</b> day, made beautiful.</div></div>
+  </div>
+
+  <div class="fixes" data-b="2"><ul>
+    <li>Keep-original is the default</li>
+    <li>AI is opt-in, per photo, voice and text</li>
+    <li>≤ 2 art pieces per page; people never redrawn</li>
+    <li>Hand-made texture: tape, pencil marks, stickers</li>
+  </ul></div>
+  <div class="principle" data-b="2"><small>PRINCIPLE</small>AI proposes. The author decides.</div>
+  <div class="after" data-b="2"><span class="tape rose"></span><img src="/present/after-spread.jpg" alt="Current spread"></div>
+  <div class="after-label" data-b="2">now · same four photos</div>
+
+  <div class="sticker-story" data-b="3"><img src="/stickers/eggs-benedict-watercolor.png" alt=""><span><b>Same lesson, smaller:</b> loose tags once put eggs benedict on a rainy day. Fix: content beats mood beats colour, and specific stickers need a real content match.</span></div>
+  <div class="folio">vi</div>
+  <aside class="notes" data-b="0">~4:00–4:10 · “My first version technically worked. It looked like a PowerPoint with pictures.” (This v0 is recreated with the same four photos.)</aside>
+  <aside class="notes" data-b="1">~4:10–4:30 · “Instead of prompting harder, I looked outward: reviews of other AI photo apps, and the collages people actually make in 醒图. The problem was me — I optimized for efficiency and over-trusted the AI's aesthetics.”</aside>
+  <aside class="notes" data-b="2">~4:30–4:45 · “So I flipped the default: originals stay, AI is opt-in per fragment, art is capped, people are never redrawn. Same four photos — AI proposes, the author decides.”</aside>
+  <aside class="notes" data-b="3">Optional, only if under 4:45. Otherwise skip straight to the last slide.</aside>
+</section>
+
+<!-- ═════════ 5 · CLOSE ═════════ -->
+<section class="slide" data-builds="0" data-label="Close">
+  <div class="close-txt">
+    <h1>Scattered <em>→ woven.</em></h1>
+    <p>Three apps, one Saturday, one page you'd actually keep — and it's still yours.</p>
+    <div class="sig">thank you — Bella</div>
+  </div>
+  <div class="close-img"><span class="tape ochre"></span><img src="/present/calendar.jpg" alt="Calendar with September 12 decorated"></div>
+  <aside class="notes" data-b="0">~4:45–5:00 · “Scattered to woven. Thank you.”</aside>
+</section>
+
+</div></div>
+
+<div id="dots"></div>
+<div id="timer">0:00</div>
+<div id="help">→ / space next · ← back · N notes · T timer · F fullscreen</div>
+<div id="notes"></div>
+
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.slide')];
+  const stage = document.getElementById('stage');
+  const notesEl = document.getElementById('notes'), dots = document.getElementById('dots');
+  const timerEl = document.getElementById('timer'), help = document.getElementById('help');
+  let s = 0, b = 0;
+
+  // voice-memo waveform bars
+  const wave = document.querySelector('.frag .wave');
+  [12,22,38,30,48,26,54,40,20,34,50,28,16,44,36,24,14,30,42,18].forEach(h => { const i = document.createElement('i'); i.style.height = h + 'px'; wave.appendChild(i); });
+  wave.insertAdjacentHTML('beforeend', '<em>0:47</em>');
+
+  slides.forEach((_, i) => { const d = document.createElement('i'); d.onclick = () => go(i, 0); dots.appendChild(d); });
+
+  function fit() {
+    const k = Math.min(innerWidth / 1600, innerHeight / 900) * 0.96;
+    stage.style.transform = `scale(${k})`;
+  }
+  function render() {
+    slides.forEach((el, i) => {
+      el.classList.toggle('active', i === s);
+      el.dataset.build = i === s ? b : 0;
+      el.querySelectorAll('[data-b]').forEach(n => n.classList.toggle('on', i === s && b >= +n.dataset.b));
+    });
+    [...dots.children].forEach((d, i) => d.classList.toggle('on', i === s));
+    const notes = [...slides[s].querySelectorAll('aside.notes')].filter(n => +n.dataset.b <= b).pop();
+    notesEl.innerHTML = `<div class="meta">${s + 1}/${slides.length} · ${slides[s].dataset.label} · step ${b}</div>${notes ? notes.innerHTML : ''}`;
+    history.replaceState(null, '', `#${s + 1}.${b}`);
+  }
+  function go(i, j) { s = Math.max(0, Math.min(slides.length - 1, i)); b = j; render(); }
+  function next() { const max = +slides[s].dataset.builds; if (b < max) { b++; render(); } else if (s < slides.length - 1) go(s + 1, 0); startTimer(); }
+  function prev() { if (b > 0) { b--; render(); } else if (s > 0) go(s - 1, +slides[s - 1].dataset.builds); }
+
+  let t0 = null;
+  function startTimer() { if (!t0) t0 = Date.now(); }
+  setInterval(() => { if (!t0) return; const sec = Math.floor((Date.now() - t0) / 1000); timerEl.textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`; timerEl.classList.toggle('late', sec > 300); }, 500);
+
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); prev(); }
+    else if (e.key === 'n' || e.key === 'N') notesEl.classList.toggle('show');
+    else if (e.key === 't' || e.key === 'T') { timerEl.classList.toggle('show'); startTimer(); }
+    else if (e.key === 'r' || e.key === 'R') { t0 = Date.now(); }
+    else if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+    else if (e.key === 'Home') go(0, 0);
+  });
+  stage.addEventListener('click', e => { if (!e.target.closest('a')) next(); });
+  addEventListener('resize', fit);
+  setTimeout(() => help.style.opacity = 0, 4000);
+
+  const m = location.hash.match(/^#(\d+)\.(\d+)$/);
+  if (m) { s = Math.min(slides.length - 1, +m[1] - 1); b = Math.min(+slides[s].dataset.builds, +m[2]); }
+  fit(); render();
+})();
+</script>
+</body>
+</html>

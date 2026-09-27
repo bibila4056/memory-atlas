@@ -1,0 +1,69 @@
+.title {
+  width: 430px;
+}
+
+.title h1 {
+  font-size: 82px;
+}
+
+.title :global(.collage-subtitle) {
+  color: #738873;
+}
+
+.words {
+  position: absolute;
+  z-index: 7;
+  transition: opacity .35s, filter .35s;
+}
+
+.words p {
+  margin: 0;
+  font: italic 23px/1.43 var(--display);
+  color: #2f2822;
+}
+
+.words:nth-of-type(2) p {
+  color: #5f3d37;
+}
+
+.ink path {
+  fill: none;
+  stroke: #cf7989;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: .72;
+}
+
+.ink .sage {
+  stroke: #6f876e;
+}
+
+.ink .ochre {
+  stroke: #b3833e;
+}
+
+.label {
+  position: absolute;
+  z-index: 8;
+  margin: 0;
+  font: 31px/1 var(--hand);
+  color: #9e4e5c;
+  transform: rotate(-5deg);
+  pointer-events: none;
+}
+
+.labelMatcha {
+  left: 1360px;
+  top: 50px;
+  color: #887038;
+  font-size: 27px;
+  transform: rotate(4deg);
+  white-space: nowrap;
+}
+
+.labelPuppies {
+  left: 152px;
+  top: 766px;
+  color: #687e68;
+}

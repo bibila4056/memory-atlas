@@ -1,0 +1,553 @@
+{
+ "version": 1,
+ "stickers": [
+  {
+   "id": "umbrella-yellow",
+   "label": "Yellow umbrella",
+   "kind": "object",
+   "medium": "watercolor",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "rain",
+    "umbrella",
+    "walk",
+    "weather",
+    "street",
+    "wet"
+   ],
+   "moods": [
+    "moody",
+    "cozy"
+   ],
+   "src": "/stickers/umbrella-yellow.png",
+   "aspect": 1.2318,
+   "palette": [
+    {
+     "hex": "#f7d14b",
+     "share": 0.398
+    },
+    {
+     "hex": "#fae683",
+     "share": 0.341
+    },
+    {
+     "hex": "#e3a323",
+     "share": 0.261
+    }
+   ],
+   "notes": "Soft watercolor; reads well tilted near a rainy photo."
+  },
+  {
+   "id": "cloud-soft",
+   "label": "Soft cloud",
+   "kind": "weather",
+   "medium": "gouache",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "rain",
+    "cloudy",
+    "sky",
+    "weather",
+    "overcast"
+   ],
+   "moods": [
+    "moody",
+    "calm",
+    "dreamy",
+    "quiet"
+   ],
+   "src": "/stickers/cloud-soft.png",
+   "aspect": 2.0873,
+   "palette": [
+    {
+     "hex": "#c6c7c9",
+     "share": 0.432
+    },
+    {
+     "hex": "#e2d6cb",
+     "share": 0.395
+    },
+    {
+     "hex": "#a0b2c5",
+     "share": 0.173
+    }
+   ],
+   "notes": "Blue-cream; pair with pencil rain strokes under it."
+  },
+  {
+   "id": "butterfly-sage",
+   "label": "Sage butterfly",
+   "kind": "creature",
+   "medium": "tinted engraving",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "garden",
+    "spring",
+    "nature",
+    "outdoors",
+    "park",
+    "flower"
+   ],
+   "moods": [
+    "delicate",
+    "curious",
+    "playful"
+   ],
+   "src": "/stickers/butterfly-sage.png",
+   "aspect": 1.0811,
+   "palette": [
+    {
+     "hex": "#656c4b",
+     "share": 0.386
+    },
+    {
+     "hex": "#272e1a",
+     "share": 0.368
+    },
+    {
+     "hex": "#a4a87c",
+     "share": 0.247
+    }
+   ],
+   "notes": "Fine engraved lines with a pink rim; keep small."
+  },
+  {
+   "id": "rose-pink",
+   "label": "Pink rose",
+   "kind": "botanical",
+   "medium": "colored pencil",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "flower",
+    "flowers",
+    "rose",
+    "roses",
+    "bouquet",
+    "birthday",
+    "anniversary",
+    "date"
+   ],
+   "moods": [
+    "romantic",
+    "tender",
+    "warm"
+   ],
+   "src": "/stickers/rose-pink.png",
+   "aspect": 0.8418,
+   "palette": [
+    {
+     "hex": "#f18598",
+     "share": 0.473
+    },
+    {
+     "hex": "#d84569",
+     "share": 0.302
+    },
+    {
+     "hex": "#aa0d31",
+     "share": 0.225
+    }
+   ],
+   "notes": "Saturated magenta; only when pink/red already lives in the photos."
+  },
+  {
+   "id": "ginkgo-leaf",
+   "label": "Ginkgo leaf",
+   "kind": "botanical",
+   "medium": "painted paper",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "leaf",
+    "tree",
+    "autumn",
+    "fall",
+    "park",
+    "campus",
+    "walk",
+    "nature"
+   ],
+   "moods": [
+    "calm",
+    "nostalgic"
+   ],
+   "src": "/stickers/ginkgo-leaf.png",
+   "aspect": 1.2043,
+   "palette": [
+    {
+     "hex": "#5e8b54",
+     "share": 0.531
+    },
+    {
+     "hex": "#346e36",
+     "share": 0.292
+    },
+    {
+     "hex": "#95a754",
+     "share": 0.177
+    }
+   ],
+   "notes": "Green with yellow edges; strong autumn signal."
+  },
+  {
+   "id": "apple-paper-collage",
+   "label": "Collage apple",
+   "kind": "food",
+   "medium": "newspaper collage",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "apple",
+    "apples",
+    "orchard",
+    "fruit",
+    "picnic"
+   ],
+   "moods": [
+    "warm",
+    "playful"
+   ],
+   "src": "/stickers/apple-paper-collage.png",
+   "aspect": 0.8465,
+   "palette": [
+    {
+     "hex": "#b82f23",
+     "share": 0.552
+    },
+    {
+     "hex": "#c39572",
+     "share": 0.245
+    },
+    {
+     "hex": "#705538",
+     "share": 0.203
+    }
+   ],
+   "notes": "Torn-paper red with newsprint; matches the tape-collage language."
+  },
+  {
+   "id": "eggs-benedict-watercolor",
+   "label": "Eggs benedict",
+   "kind": "food",
+   "medium": "watercolor",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "brunch",
+    "breakfast",
+    "eggs",
+    "egg",
+    "benedict",
+    "salmon",
+    "hollandaise"
+   ],
+   "moods": [
+    "cozy",
+    "indulgent"
+   ],
+   "src": "/stickers/eggs-benedict-watercolor.png",
+   "aspect": 1.1613,
+   "palette": [
+    {
+     "hex": "#e1c071",
+     "share": 0.424
+    },
+    {
+     "hex": "#ee9236",
+     "share": 0.336
+    },
+    {
+     "hex": "#efebd7",
+     "share": 0.24
+    }
+   ],
+   "notes": "Only for a brunch/breakfast moment."
+  },
+  {
+   "id": "cherries-paper-cutout",
+   "label": "Cherries",
+   "kind": "food",
+   "medium": "photo cut-out on paper",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "cherry",
+    "cherries",
+    "fruit",
+    "dessert",
+    "picnic"
+   ],
+   "moods": [
+    "playful",
+    "sweet"
+   ],
+   "src": "/stickers/cherries-paper-cutout.png",
+   "aspect": 0.9573,
+   "palette": [
+    {
+     "hex": "#e2ded9",
+     "share": 0.538
+    },
+    {
+     "hex": "#a12e35",
+     "share": 0.393
+    },
+    {
+     "hex": "#ab897e",
+     "share": 0.069
+    }
+   ],
+   "notes": "Glossy photo with a white paper cut border; photographic."
+  },
+  {
+   "id": "lime-botanical",
+   "label": "Lime",
+   "kind": "food",
+   "medium": "vintage botanical illustration",
+   "generic": false,
+   "role": "accent",
+   "tags": [
+    "lime",
+    "citrus",
+    "cocktail",
+    "margarita",
+    "tacos",
+    "lemonade",
+    "mojito"
+   ],
+   "moods": [
+    "fresh",
+    "bright"
+   ],
+   "src": "/stickers/lime-botanical.png",
+   "aspect": 1.3077,
+   "palette": [
+    {
+     "hex": "#387418",
+     "share": 0.373
+    },
+    {
+     "hex": "#e4e06f",
+     "share": 0.319
+    },
+    {
+     "hex": "#a9c239",
+     "share": 0.308
+    }
+   ],
+   "notes": "Bright green; loud against muted palettes."
+  },
+  {
+   "id": "tree-green",
+   "label": "Green tree",
+   "kind": "botanical",
+   "medium": "photo cut-out",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "tree",
+    "trees",
+    "park",
+    "forest",
+    "garden",
+    "picnic"
+   ],
+   "moods": [
+    "fresh",
+    "calm"
+   ],
+   "src": "/stickers/tree-green.png",
+   "aspect": 0.9267,
+   "palette": [
+    {
+     "hex": "#112f0b",
+     "share": 0.476
+    },
+    {
+     "hex": "#375813",
+     "share": 0.331
+    },
+    {
+     "hex": "#6d861d",
+     "share": 0.193
+    }
+   ],
+   "notes": "Photographic and dense; use at most one, small, near a green photo."
+  },
+  {
+   "id": "statue-face-sketch",
+   "label": "Statue face",
+   "kind": "figure",
+   "medium": "ink stipple drawing",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "museum",
+    "gallery",
+    "sculpture",
+    "statue",
+    "exhibition",
+    "art"
+   ],
+   "moods": [
+    "quiet",
+    "pensive",
+    "dreamy",
+    "calm",
+    "tired"
+   ],
+   "src": "/stickers/statue-face-sketch.png",
+   "aspect": 1.1444,
+   "palette": [
+    {
+     "hex": "#2b2b2b",
+     "share": 1.0
+    }
+   ],
+   "notes": "Black ink on transparency: only on light paper. Faces carry meaning; never beside a real person's face."
+  },
+  {
+   "id": "pressed-wildflowers",
+   "label": "Pressed wildflowers",
+   "kind": "botanical",
+   "medium": "pressed botanicals",
+   "generic": true,
+   "role": "corner",
+   "tags": [
+    "flower",
+    "wildflower",
+    "meadow",
+    "garden",
+    "hike",
+    "nature",
+    "spring",
+    "summer"
+   ],
+   "moods": [
+    "nostalgic",
+    "quiet",
+    "tender",
+    "calm"
+   ],
+   "src": "/stickers/pressed-wildflowers.png",
+   "aspect": 0.6078,
+   "palette": [
+    {
+     "hex": "#a08a66",
+     "share": 0.383
+    },
+    {
+     "hex": "#7c6a53",
+     "share": 0.347
+    },
+    {
+     "hex": "#c2ac7e",
+     "share": 0.27
+    }
+   ],
+   "notes": "Faded beige, lavender; blends into almost any muted palette."
+  },
+  {
+   "id": "bicycle-vintage",
+   "label": "Vintage bicycle",
+   "kind": "object",
+   "medium": "vintage illustration",
+   "generic": false,
+   "role": "corner",
+   "tags": [
+    "bike",
+    "bicycle",
+    "ride",
+    "cycling",
+    "biking"
+   ],
+   "moods": [
+    "nostalgic",
+    "free"
+   ],
+   "src": "/stickers/bicycle-vintage.png",
+   "aspect": 1.2783,
+   "palette": [
+    {
+     "hex": "#8c6d4d",
+     "share": 0.43
+    },
+    {
+     "hex": "#b49771",
+     "share": 0.369
+    },
+    {
+     "hex": "#503423",
+     "share": 0.2
+    }
+   ],
+   "notes": "Brown ink tones; only when someone rode or saw bikes."
+  },
+  {
+   "id": "stars-cardboard",
+   "label": "Cardboard stars",
+   "kind": "accent",
+   "medium": "cardboard cut-out",
+   "generic": true,
+   "role": "accent",
+   "tags": [
+    "night",
+    "stars",
+    "celebration",
+    "birthday",
+    "win",
+    "party",
+    "concert",
+    "achievement"
+   ],
+   "moods": [
+    "joyful",
+    "proud",
+    "playful"
+   ],
+   "src": "/stickers/stars-cardboard.png",
+   "aspect": 1.03,
+   "palette": [
+    {
+     "hex": "#e0b13b",
+     "share": 0.84
+    },
+    {
+     "hex": "#d2a45b",
+     "share": 0.154
+    },
+    {
+     "hex": "#835d2a",
+     "share": 0.006
+    }
+   ],
+   "notes": "Mustard yellow; use as a small cheer mark, never more than one cluster."
+  }
+ ],
+ "backgrounds": [
+  {
+   "id": "wildflower-watercolor",
+   "file": "/materials/backgrounds/wildflower-watercolor.jpg",
+   "label": "Wildflower watercolor wash",
+   "tags": [
+    "flower",
+    "meadow",
+    "garden",
+    "spring",
+    "nature",
+    "hike",
+    "picnic"
+   ],
+   "moods": [
+    "calm",
+    "dreamy",
+    "tender"
+   ],
+   "notes": "Full-bleed watercolor paper with lavender and sage wildflowers at the lower right; leaves the upper left empty for a title. Use as a low-opacity page wash for gentle nature days, not as a sticker. Not tileable."
+  }
+ ]
+}

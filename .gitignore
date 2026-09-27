@@ -50,3 +50,11 @@ coverage/
 .coverage
 htmlcov/
 *.log
+
+# Browser verification / generated compiler state
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Original local capture evidence
+apps/api/data/

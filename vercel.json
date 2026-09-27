@@ -1,0 +1,16 @@
+{
+  "experimentalServices": {
+    "web": {
+      "entrypoint": "apps/web",
+      "routePrefix": "/"
+    },
+    "api": {
+      "entrypoint": "apps/api/main.py",
+      "routePrefix": "/api",
+      "includeFiles": [
+        "apps/api/app/**",
+        "apps/api/art_skills/**"
+      ]
+    }
+  }
+}

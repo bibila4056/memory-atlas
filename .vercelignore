@@ -1,0 +1,18 @@
+.git
+.github
+.agents
+.codex
+.venv
+.Rhistory
+.env
+.env.*
+Claude outputs
+artifacts
+apps/api/data
+apps/web/.next
+apps/web/stickers
+node_modules
+playwright-report
+test-results
+**/__pycache__
+**/*.pyc

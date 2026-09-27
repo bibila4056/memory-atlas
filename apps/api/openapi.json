@@ -1,0 +1,3382 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Memory Atlas API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/session": {
+      "post": {
+        "summary": "Create Session",
+        "operationId": "create_session_api_session_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSession"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/session/{session_id}": {
+      "get": {
+        "summary": "Get Session",
+        "operationId": "get_session_api_session__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Session",
+        "operationId": "update_session_api_session__session_id__patch",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionPreferences"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ingest": {
+      "post": {
+        "summary": "Ingest",
+        "operationId": "ingest_api_ingest_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_ingest_api_ingest_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/source/{source_id}": {
+      "get": {
+        "summary": "Source",
+        "operationId": "source_api_source__source_id__get",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceFragment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Source",
+        "operationId": "update_source_api_source__source_id__patch",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FragmentPreferences"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceFragment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Source",
+        "operationId": "delete_source_api_source__source_id__delete",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/source/{source_id}/media": {
+      "get": {
+        "summary": "Source Media",
+        "operationId": "source_media_api_source__source_id__media_get",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/source/{source_id}/text": {
+      "put": {
+        "summary": "Edit Text",
+        "operationId": "edit_text_api_source__source_id__text_put",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Source Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextEdit"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceFragment"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/session/{session_id}/conversation": {
+      "post": {
+        "summary": "Add Conversation",
+        "operationId": "add_conversation_api_session__session_id__conversation_post",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ConversationTurn"
+                },
+                "title": "Turns"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaptureSession"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/transcribe": {
+      "post": {
+        "summary": "Transcribe",
+        "operationId": "transcribe_api_transcribe_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TranscribeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceTranscript"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weave": {
+      "post": {
+        "summary": "Run Weave",
+        "operationId": "run_weave_api_weave_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeaveResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weave/{session_id}": {
+      "get": {
+        "summary": "Latest Weave",
+        "operationId": "latest_weave_api_weave__session_id__get",
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeaveResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/clarify": {
+      "post": {
+        "summary": "Clarify",
+        "description": "At most two short follow-up questions before weaving (docs/ART_DIRECTION.md \u00a7D).",
+        "operationId": "clarify_api_clarify_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeaveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClarifyResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/generate-asset": {
+      "post": {
+        "summary": "Generate Asset",
+        "operationId": "generate_asset_api_generate_asset_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateAssetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/art/{name}": {
+      "get": {
+        "summary": "Art File",
+        "operationId": "art_file_api_art__name__get",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health Api Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/plans/demo": {
+      "get": {
+        "summary": "Get Demo Plan",
+        "operationId": "get_demo_plan_api_plans_demo_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedVisualPlan"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AlphaMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "alpha_mask",
+            "title": "Kind"
+          },
+          "asset_ref": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Asset Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "asset_ref"
+        ],
+        "title": "AlphaMask"
+      },
+      "AnnotationOut": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Source Ids"
+          },
+          "target_source_id": {
+            "type": "string",
+            "title": "Target Source Id"
+          },
+          "box": {
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 4,
+            "title": "Box"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "source_ids",
+          "target_source_id",
+          "box"
+        ],
+        "title": "AnnotationOut"
+      },
+      "ArtDirectionOut": {
+        "properties": {
+          "requests": {
+            "items": {
+              "$ref": "#/components/schemas/ArtRequestOut"
+            },
+            "type": "array",
+            "title": "Requests"
+          },
+          "annotations": {
+            "items": {
+              "$ref": "#/components/schemas/AnnotationOut"
+            },
+            "type": "array",
+            "title": "Annotations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "requests",
+          "annotations"
+        ],
+        "title": "ArtDirectionOut"
+      },
+      "ArtRequestOut": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "moment_id": {
+            "type": "string",
+            "title": "Moment Id"
+          },
+          "tool": {
+            "type": "string",
+            "enum": [
+              "tape_collage",
+              "doodle",
+              "scene_extension"
+            ],
+            "title": "Tool"
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "DISTILL",
+              "EXTEND"
+            ],
+            "title": "Treatment"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          },
+          "placement": {
+            "type": "string",
+            "enum": [
+              "beside_original",
+              "replaces_print_zone"
+            ],
+            "title": "Placement"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "moment_id",
+          "tool",
+          "treatment",
+          "reason",
+          "placement"
+        ],
+        "title": "ArtRequestOut"
+      },
+      "AudioElement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "rotation_deg": {
+            "type": "number",
+            "title": "Rotation Deg",
+            "default": 0
+          },
+          "z_index": {
+            "type": "integer",
+            "title": "Z Index"
+          },
+          "provenance_interactive": {
+            "type": "boolean",
+            "const": true,
+            "title": "Provenance Interactive",
+            "default": true
+          },
+          "overlap_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Group Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "kind": {
+            "type": "string",
+            "const": "audio",
+            "title": "Kind"
+          },
+          "clip_start_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Clip Start Ms"
+          },
+          "clip_end_ms": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Clip End Ms"
+          },
+          "transcript_excerpt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Transcript Excerpt"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "bounds",
+          "z_index",
+          "source_ids",
+          "kind",
+          "clip_start_ms",
+          "clip_end_ms"
+        ],
+        "title": "AudioElement"
+      },
+      "Body_ingest_api_ingest_post": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "files": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Files",
+            "default": []
+          },
+          "text_json": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text Json"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id"
+        ],
+        "title": "Body_ingest_api_ingest_post"
+      },
+      "Bounds": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          },
+          "width": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Width"
+          },
+          "height": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Height"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "Bounds"
+      },
+      "BundleScore": {
+        "properties": {
+          "total": {
+            "type": "number",
+            "title": "Total"
+          },
+          "role_coverage": {
+            "type": "number",
+            "title": "Role Coverage"
+          },
+          "salience": {
+            "type": "number",
+            "title": "Salience"
+          },
+          "visual_diversity": {
+            "type": "number",
+            "title": "Visual Diversity"
+          },
+          "emotional_coverage": {
+            "type": "number",
+            "title": "Emotional Coverage"
+          },
+          "temporal_coverage": {
+            "type": "number",
+            "title": "Temporal Coverage"
+          },
+          "grounding": {
+            "type": "number",
+            "title": "Grounding"
+          },
+          "redundancy_penalty": {
+            "type": "number",
+            "title": "Redundancy Penalty"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "total",
+          "role_coverage",
+          "salience",
+          "visual_diversity",
+          "emotional_coverage",
+          "temporal_coverage",
+          "grounding",
+          "redundancy_penalty"
+        ],
+        "title": "BundleScore"
+      },
+      "Canvas": {
+        "properties": {
+          "width": {
+            "type": "integer",
+            "const": 1600,
+            "title": "Width",
+            "default": 1600
+          },
+          "height": {
+            "type": "integer",
+            "const": 1000,
+            "title": "Height",
+            "default": 1000
+          },
+          "page_split_x": {
+            "type": "integer",
+            "const": 800,
+            "title": "Page Split X",
+            "default": 800
+          },
+          "outer_safe_margin": {
+            "type": "integer",
+            "const": 48,
+            "title": "Outer Safe Margin",
+            "default": 48
+          },
+          "gutter": {
+            "$ref": "#/components/schemas/Gutter"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Canvas"
+      },
+      "CaptureSession": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "0.1.0",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "allow_text_refinement": {
+            "type": "boolean",
+            "title": "Allow Text Refinement",
+            "default": false
+          },
+          "weave_instruction": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weave Instruction",
+            "description": "Author's optional free-text guidance for the weaver (e.g. 'focus on Shelly')."
+          },
+          "woven": {
+            "type": "boolean",
+            "title": "Woven",
+            "description": "True once a weave has finished for this session; Capture then starts a fresh notebook page.",
+            "default": false
+          },
+          "conversation": {
+            "items": {
+              "$ref": "#/components/schemas/ConversationTurn"
+            },
+            "type": "array",
+            "title": "Conversation",
+            "default": []
+          },
+          "fragments": {
+            "items": {
+              "$ref": "#/components/schemas/SourceFragment"
+            },
+            "type": "array",
+            "title": "Fragments"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "session_id",
+          "created_at",
+          "fragments"
+        ],
+        "title": "CaptureSession"
+      },
+      "ClarifyQuestion": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "suggestions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Suggestions",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "source_id",
+          "text"
+        ],
+        "title": "ClarifyQuestion"
+      },
+      "ClarifyResult": {
+        "properties": {
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/ClarifyQuestion"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Questions"
+          },
+          "photos": {
+            "items": {
+              "$ref": "#/components/schemas/PhotoSeen"
+            },
+            "type": "array",
+            "title": "Photos",
+            "default": []
+          },
+          "voices": {
+            "items": {
+              "$ref": "#/components/schemas/VoiceHeard"
+            },
+            "type": "array",
+            "title": "Voices",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "questions"
+        ],
+        "title": "ClarifyResult",
+        "description": "The 'understand' step: what each photo shows, what each voice note says, and \u2264N questions for what can't be seen."
+      },
+      "ConversationTurn": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "weaver",
+              "author"
+            ],
+            "title": "Role"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id"
+          },
+          "question_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Id"
+          },
+          "at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "role",
+          "text"
+        ],
+        "title": "ConversationTurn"
+      },
+      "CreateSession": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "CreateSession"
+      },
+      "DecorationElement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "rotation_deg": {
+            "type": "number",
+            "title": "Rotation Deg",
+            "default": 0
+          },
+          "z_index": {
+            "type": "integer",
+            "title": "Z Index"
+          },
+          "provenance_interactive": {
+            "type": "boolean",
+            "const": false,
+            "title": "Provenance Interactive",
+            "default": false
+          },
+          "overlap_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Group Id"
+          },
+          "kind": {
+            "type": "string",
+            "const": "decoration",
+            "title": "Kind"
+          },
+          "chrome_kind": {
+            "type": "string",
+            "enum": [
+              "paper",
+              "gutter",
+              "page_shadow",
+              "generic_mount"
+            ],
+            "title": "Chrome Kind"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "bounds",
+          "z_index",
+          "kind",
+          "chrome_kind"
+        ],
+        "title": "DecorationElement"
+      },
+      "Detail": {
+        "properties": {
+          "label": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Label",
+            "description": "What is visibly there, in plain words (e.g. \"churros\", \"person\")."
+          },
+          "box": {
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 4,
+            "title": "Box",
+            "description": "Normalized [x0, y0, x1, y1] within the photo."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "label",
+          "box"
+        ],
+        "title": "Detail"
+      },
+      "DuplicateGroup": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 2,
+            "title": "Source Ids"
+          },
+          "kept_source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Kept Source Id"
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "perceptual",
+              "embedding"
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "source_ids",
+          "kept_source_id",
+          "reason"
+        ],
+        "title": "DuplicateGroup"
+      },
+      "EllipseMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "ellipse",
+            "title": "Kind"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "EllipseMask"
+      },
+      "FragmentPreferences": {
+        "properties": {
+          "keep_original": {
+            "type": "boolean",
+            "title": "Keep Original"
+          },
+          "source_instruction": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Instruction"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "keep_original"
+        ],
+        "title": "FragmentPreferences"
+      },
+      "GenerateAssetRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "session_id",
+          "source_id"
+        ],
+        "title": "GenerateAssetRequest"
+      },
+      "GeneratedAssetElement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "rotation_deg": {
+            "type": "number",
+            "title": "Rotation Deg",
+            "default": 0
+          },
+          "z_index": {
+            "type": "integer",
+            "title": "Z Index"
+          },
+          "provenance_interactive": {
+            "type": "boolean",
+            "const": true,
+            "title": "Provenance Interactive",
+            "default": true
+          },
+          "overlap_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Group Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "mask": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RoundedRectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EllipseMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/PolygonMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SvgPathMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AlphaMask"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "alpha_mask": "#/components/schemas/AlphaMask",
+                    "ellipse": "#/components/schemas/EllipseMask",
+                    "polygon": "#/components/schemas/PolygonMask",
+                    "rectangle": "#/components/schemas/RectangleMask",
+                    "rounded_rectangle": "#/components/schemas/RoundedRectangleMask",
+                    "svg_path": "#/components/schemas/SvgPathMask"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mask"
+          },
+          "original_region_mask": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RoundedRectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EllipseMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/PolygonMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SvgPathMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AlphaMask"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "alpha_mask": "#/components/schemas/AlphaMask",
+                    "ellipse": "#/components/schemas/EllipseMask",
+                    "polygon": "#/components/schemas/PolygonMask",
+                    "rectangle": "#/components/schemas/RectangleMask",
+                    "rounded_rectangle": "#/components/schemas/RoundedRectangleMask",
+                    "svg_path": "#/components/schemas/SvgPathMask"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Region Mask"
+          },
+          "kind": {
+            "type": "string",
+            "const": "generated_asset",
+            "title": "Kind"
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "ANNOTATE",
+              "EXTEND",
+              "DISTILL"
+            ],
+            "title": "Treatment"
+          },
+          "art_style": {
+            "type": "string",
+            "enum": [
+              "tape_collage",
+              "gathered_scenes",
+              "doodle"
+            ],
+            "title": "Art Style"
+          },
+          "asset_request_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Asset Request Id"
+          },
+          "asset_ref": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Asset Ref"
+          },
+          "generation_mode": {
+            "type": "string",
+            "enum": [
+              "live",
+              "cache",
+              "fallback"
+            ],
+            "title": "Generation Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "bounds",
+          "z_index",
+          "source_ids",
+          "kind",
+          "treatment",
+          "art_style",
+          "asset_request_id",
+          "asset_ref",
+          "generation_mode"
+        ],
+        "title": "GeneratedAssetElement"
+      },
+      "Gutter": {
+        "properties": {
+          "x": {
+            "type": "integer",
+            "const": 776,
+            "title": "X",
+            "default": 776
+          },
+          "width": {
+            "type": "integer",
+            "const": 48,
+            "title": "Width",
+            "default": 48
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Gutter"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MaskPoint": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Y"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "x",
+          "y"
+        ],
+        "title": "MaskPoint"
+      },
+      "MemoryAtom": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "event": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Event"
+          },
+          "people": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "People",
+            "default": []
+          },
+          "place": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place"
+          },
+          "objects": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Objects",
+            "default": []
+          },
+          "moods": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Moods",
+            "default": []
+          },
+          "themes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Themes",
+            "default": []
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "salience": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Salience"
+          },
+          "verbatim_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verbatim Text"
+          },
+          "must_preserve": {
+            "type": "boolean",
+            "title": "Must Preserve",
+            "default": true
+          },
+          "subject_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "object",
+                  "scene"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Kind"
+          },
+          "details": {
+            "items": {
+              "$ref": "#/components/schemas/Detail"
+            },
+            "type": "array",
+            "title": "Details",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "source_ids",
+          "event",
+          "salience"
+        ],
+        "title": "MemoryAtom"
+      },
+      "Moment": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "atom_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Atom Ids"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "image_source_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "title": "Image Source Ids",
+            "default": []
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "people": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "People",
+            "default": []
+          },
+          "place": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place"
+          },
+          "moods": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Moods",
+            "default": []
+          },
+          "salience": {
+            "type": "number",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Salience"
+          },
+          "time_range": {
+            "anyOf": [
+              {
+                "prefixItems": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                ],
+                "type": "array",
+                "maxItems": 2,
+                "minItems": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Range"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "atom_ids",
+          "source_ids",
+          "summary",
+          "salience"
+        ],
+        "title": "Moment"
+      },
+      "PhotoElement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "rotation_deg": {
+            "type": "number",
+            "title": "Rotation Deg",
+            "default": 0
+          },
+          "z_index": {
+            "type": "integer",
+            "title": "Z Index"
+          },
+          "provenance_interactive": {
+            "type": "boolean",
+            "const": true,
+            "title": "Provenance Interactive",
+            "default": true
+          },
+          "overlap_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Group Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "mask": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RoundedRectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EllipseMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/PolygonMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SvgPathMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AlphaMask"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "alpha_mask": "#/components/schemas/AlphaMask",
+                    "ellipse": "#/components/schemas/EllipseMask",
+                    "polygon": "#/components/schemas/PolygonMask",
+                    "rectangle": "#/components/schemas/RectangleMask",
+                    "rounded_rectangle": "#/components/schemas/RoundedRectangleMask",
+                    "svg_path": "#/components/schemas/SvgPathMask"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mask"
+          },
+          "original_region_mask": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/RectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/RoundedRectangleMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/EllipseMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/PolygonMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SvgPathMask"
+                  },
+                  {
+                    "$ref": "#/components/schemas/AlphaMask"
+                  }
+                ],
+                "discriminator": {
+                  "propertyName": "kind",
+                  "mapping": {
+                    "alpha_mask": "#/components/schemas/AlphaMask",
+                    "ellipse": "#/components/schemas/EllipseMask",
+                    "polygon": "#/components/schemas/PolygonMask",
+                    "rectangle": "#/components/schemas/RectangleMask",
+                    "rounded_rectangle": "#/components/schemas/RoundedRectangleMask",
+                    "svg_path": "#/components/schemas/SvgPathMask"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Region Mask"
+          },
+          "kind": {
+            "type": "string",
+            "const": "photo",
+            "title": "Kind"
+          },
+          "source_asset_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Source Asset Id"
+          },
+          "treatment": {
+            "type": "string",
+            "enum": [
+              "PRESERVE",
+              "ANNOTATE",
+              "EXTEND"
+            ],
+            "title": "Treatment"
+          },
+          "fit": {
+            "type": "string",
+            "enum": [
+              "cover",
+              "contain"
+            ],
+            "title": "Fit"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "bounds",
+          "z_index",
+          "source_ids",
+          "kind",
+          "source_asset_id",
+          "treatment",
+          "fit"
+        ],
+        "title": "PhotoElement"
+      },
+      "PhotoSeen": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "subject_kind": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "object",
+                  "scene"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject Kind"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Labels",
+            "default": []
+          },
+          "people": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "People",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id"
+        ],
+        "title": "PhotoSeen"
+      },
+      "PolygonMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "polygon",
+            "title": "Kind"
+          },
+          "points": {
+            "items": {
+              "$ref": "#/components/schemas/MaskPoint"
+            },
+            "type": "array",
+            "minItems": 3,
+            "title": "Points"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "points"
+        ],
+        "title": "PolygonMask"
+      },
+      "ProviderInfo": {
+        "properties": {
+          "reasoning": {
+            "type": "string",
+            "enum": [
+              "live",
+              "fixture",
+              "heuristic"
+            ],
+            "title": "Reasoning"
+          },
+          "reasoning_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reasoning Model"
+          },
+          "embeddings": {
+            "type": "string",
+            "enum": [
+              "siglip2",
+              "fallback"
+            ],
+            "title": "Embeddings"
+          },
+          "embedding_model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Embedding Model"
+          },
+          "cross_modal": {
+            "type": "boolean",
+            "title": "Cross Modal",
+            "description": "True when text queries and images share one embedding space (SigLIP 2)."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reasoning",
+          "embeddings",
+          "cross_modal"
+        ],
+        "title": "ProviderInfo"
+      },
+      "RectangleMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "rectangle",
+            "title": "Kind"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "RectangleMask"
+      },
+      "ResolvedVisualPlan": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version"
+          },
+          "plan_id": {
+            "type": "string",
+            "title": "Plan Id"
+          },
+          "plan_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Plan Revision"
+          },
+          "session_id": {
+            "type": "string",
+            "title": "Session Id"
+          },
+          "canvas": {
+            "$ref": "#/components/schemas/Canvas"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "palette": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "minItems": 2,
+            "title": "Palette"
+          },
+          "uses_timeline": {
+            "type": "boolean",
+            "title": "Uses Timeline"
+          },
+          "status": {
+            "type": "string",
+            "const": "resolved",
+            "title": "Status"
+          },
+          "elements": {
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/PhotoElement"
+                },
+                {
+                  "$ref": "#/components/schemas/TextElement"
+                },
+                {
+                  "$ref": "#/components/schemas/AudioElement"
+                },
+                {
+                  "$ref": "#/components/schemas/GeneratedAssetElement"
+                },
+                {
+                  "$ref": "#/components/schemas/DecorationElement"
+                }
+              ],
+              "discriminator": {
+                "propertyName": "kind",
+                "mapping": {
+                  "audio": "#/components/schemas/AudioElement",
+                  "decoration": "#/components/schemas/DecorationElement",
+                  "generated_asset": "#/components/schemas/GeneratedAssetElement",
+                  "photo": "#/components/schemas/PhotoElement",
+                  "text": "#/components/schemas/TextElement"
+                }
+              }
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Elements"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "schema_version",
+          "plan_id",
+          "plan_revision",
+          "session_id",
+          "canvas",
+          "title",
+          "palette",
+          "uses_timeline",
+          "status",
+          "elements"
+        ],
+        "title": "ResolvedVisualPlan"
+      },
+      "RoleCandidates": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "title": "Role"
+          },
+          "intent": {
+            "type": "string",
+            "title": "Intent"
+          },
+          "query": {
+            "type": "string",
+            "title": "Query"
+          },
+          "candidate_moment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Candidate Moment Ids"
+          },
+          "scores": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Scores"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "role",
+          "intent",
+          "query",
+          "candidate_moment_ids",
+          "scores"
+        ],
+        "title": "RoleCandidates"
+      },
+      "RoleIntent": {
+        "properties": {
+          "role": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Role"
+          },
+          "intent": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Intent"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Query",
+            "description": "Short visual description used for embedding retrieval."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "role",
+          "intent",
+          "query"
+        ],
+        "title": "RoleIntent"
+      },
+      "RoundedRectangleMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "rounded_rectangle",
+            "title": "Kind"
+          },
+          "radius_px": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Radius Px"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "radius_px"
+        ],
+        "title": "RoundedRectangleMask"
+      },
+      "ScoredBundle": {
+        "properties": {
+          "seed": {
+            "type": "string",
+            "enum": [
+              "anchor",
+              "alternative",
+              "baseline"
+            ],
+            "title": "Seed"
+          },
+          "moment_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Moment Ids"
+          },
+          "roles": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Roles",
+            "description": "moment_id \u2192 narrative role"
+          },
+          "score": {
+            "$ref": "#/components/schemas/BundleScore"
+          },
+          "expansion_log": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Expansion Log",
+            "default": []
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "seed",
+          "moment_ids",
+          "roles",
+          "score"
+        ],
+        "title": "ScoredBundle"
+      },
+      "SessionPreferences": {
+        "properties": {
+          "allow_text_refinement": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allow Text Refinement"
+          },
+          "weave_instruction": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weave Instruction"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SessionPreferences"
+      },
+      "SourceFragment": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "0.1.0",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "modality": {
+            "type": "string",
+            "enum": [
+              "image",
+              "text",
+              "audio"
+            ],
+            "title": "Modality"
+          },
+          "original_media_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Media Ref"
+          },
+          "original_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Original Text"
+          },
+          "filename": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Filename"
+          },
+          "media_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Media Type"
+          },
+          "byte_size": {
+            "type": "integer",
+            "title": "Byte Size",
+            "default": 0
+          },
+          "captured_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Captured At"
+          },
+          "keep_original": {
+            "type": "boolean",
+            "title": "Keep Original",
+            "default": true
+          },
+          "source_instruction": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Instruction"
+          },
+          "transcript": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SourceTranscript"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "session_id",
+          "modality"
+        ],
+        "title": "SourceFragment"
+      },
+      "SourceTranscript": {
+        "properties": {
+          "duration_ms": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Duration Ms"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/TranscriptSegment"
+            },
+            "type": "array",
+            "title": "Segments"
+          },
+          "schema_version": {
+            "type": "string",
+            "const": "0.1.0",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "type": "array",
+            "maxItems": 1,
+            "minItems": 1,
+            "title": "Source Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "duration_ms",
+          "segments",
+          "source_ids"
+        ],
+        "title": "SourceTranscript"
+      },
+      "StageTiming": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "title": "Stage"
+          },
+          "ms": {
+            "type": "integer",
+            "title": "Ms"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage",
+          "ms"
+        ],
+        "title": "StageTiming"
+      },
+      "StickerPickOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "src": {
+            "type": "string",
+            "title": "Src"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "chosen": {
+            "type": "boolean",
+            "title": "Chosen"
+          },
+          "score": {
+            "type": "number",
+            "title": "Score"
+          },
+          "matched": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Matched"
+          },
+          "color_fit": {
+            "type": "number",
+            "title": "Color Fit"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "src",
+          "kind",
+          "chosen",
+          "score",
+          "matched",
+          "color_fit",
+          "reason"
+        ],
+        "title": "StickerPickOut"
+      },
+      "StoryIntent": {
+        "properties": {
+          "intent": {
+            "type": "string",
+            "maxLength": 240,
+            "minLength": 1,
+            "title": "Intent"
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "keywords": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Keywords",
+            "default": []
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleIntent"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 2,
+            "title": "Roles",
+            "description": "First role is always the Anchor."
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "intent",
+          "title",
+          "roles"
+        ],
+        "title": "StoryIntent"
+      },
+      "SvgPathMask": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "const": "svg_path",
+            "title": "Kind"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Path"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind",
+          "path"
+        ],
+        "title": "SvgPathMask"
+      },
+      "TextEdit": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 20000,
+            "minLength": 1,
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "title": "TextEdit"
+      },
+      "TextElement": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Id"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/Bounds"
+          },
+          "rotation_deg": {
+            "type": "number",
+            "title": "Rotation Deg",
+            "default": 0
+          },
+          "z_index": {
+            "type": "integer",
+            "title": "Z Index"
+          },
+          "provenance_interactive": {
+            "type": "boolean",
+            "const": true,
+            "title": "Provenance Interactive",
+            "default": true
+          },
+          "overlap_group_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Overlap Group Id"
+          },
+          "source_ids": {
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Source Ids"
+          },
+          "kind": {
+            "type": "string",
+            "const": "text",
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "text_mode": {
+            "type": "string",
+            "enum": [
+              "verbatim",
+              "refined"
+            ],
+            "title": "Text Mode"
+          },
+          "style_role": {
+            "type": "string",
+            "enum": [
+              "title",
+              "body",
+              "quote",
+              "caption"
+            ],
+            "title": "Style Role"
+          },
+          "font_size_px": {
+            "type": "integer",
+            "minimum": 20.0,
+            "title": "Font Size Px"
+          },
+          "align": {
+            "type": "string",
+            "enum": [
+              "left",
+              "center",
+              "right"
+            ],
+            "title": "Align"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "bounds",
+          "z_index",
+          "source_ids",
+          "kind",
+          "text",
+          "text_mode",
+          "style_role",
+          "font_size_px",
+          "align"
+        ],
+        "title": "TextElement"
+      },
+      "TranscribeRequest": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Source Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id"
+        ],
+        "title": "TranscribeRequest"
+      },
+      "TranscriptSegment": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Text"
+          },
+          "clip_start_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Clip Start Ms"
+          },
+          "clip_end_ms": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Clip End Ms"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "clip_start_ms",
+          "clip_end_ms"
+        ],
+        "title": "TranscriptSegment"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VerifierReport": {
+        "properties": {
+          "coverage": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Coverage"
+          },
+          "coherence": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Coherence"
+          },
+          "complementarity": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Complementarity"
+          },
+          "groundedness": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Groundedness"
+          },
+          "visual_diversity": {
+            "type": "integer",
+            "maximum": 5.0,
+            "minimum": 1.0,
+            "title": "Visual Diversity"
+          },
+          "weakest_moment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weakest Moment Id"
+          },
+          "replacement_moment_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement Moment Id"
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 400,
+            "title": "Rationale"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "coverage",
+          "coherence",
+          "complementarity",
+          "groundedness",
+          "visual_diversity",
+          "rationale"
+        ],
+        "title": "VerifierReport"
+      },
+      "VoiceHeard": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "shown_as_text": {
+            "type": "boolean",
+            "title": "Shown As Text",
+            "description": "True for \"Turn into words\"; False = understood quietly, stays as your voice on the page."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "transcribed",
+              "unavailable",
+              "failed"
+            ],
+            "title": "Status"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "shown_as_text",
+          "status"
+        ],
+        "title": "VoiceHeard"
+      },
+      "WeaveRequest": {
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "session_id"
+        ],
+        "title": "WeaveRequest"
+      },
+      "WeaveResult": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "0.1.0",
+            "title": "Schema Version",
+            "default": "0.1.0"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Session Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "providers": {
+            "$ref": "#/components/schemas/ProviderInfo"
+          },
+          "atoms": {
+            "items": {
+              "$ref": "#/components/schemas/MemoryAtom"
+            },
+            "type": "array",
+            "title": "Atoms"
+          },
+          "duplicate_groups": {
+            "items": {
+              "$ref": "#/components/schemas/DuplicateGroup"
+            },
+            "type": "array",
+            "title": "Duplicate Groups"
+          },
+          "moments": {
+            "items": {
+              "$ref": "#/components/schemas/Moment"
+            },
+            "type": "array",
+            "title": "Moments"
+          },
+          "story": {
+            "$ref": "#/components/schemas/StoryIntent"
+          },
+          "role_candidates": {
+            "items": {
+              "$ref": "#/components/schemas/RoleCandidates"
+            },
+            "type": "array",
+            "title": "Role Candidates"
+          },
+          "seeds": {
+            "items": {
+              "$ref": "#/components/schemas/ScoredBundle"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "Seeds"
+          },
+          "selected": {
+            "$ref": "#/components/schemas/ScoredBundle"
+          },
+          "verifier": {
+            "$ref": "#/components/schemas/VerifierReport"
+          },
+          "verifier_mode": {
+            "type": "string",
+            "enum": [
+              "live",
+              "fixture",
+              "heuristic"
+            ],
+            "title": "Verifier Mode"
+          },
+          "replacement": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement",
+            "description": "\"old \u2192 new\" when the one allowed replacement was applied."
+          },
+          "baseline": {
+            "$ref": "#/components/schemas/ScoredBundle"
+          },
+          "palette": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 6,
+            "minItems": 3,
+            "title": "Palette"
+          },
+          "uses_timeline": {
+            "type": "boolean",
+            "title": "Uses Timeline"
+          },
+          "art": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ArtDirectionOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "stickers": {
+            "items": {
+              "$ref": "#/components/schemas/StickerPickOut"
+            },
+            "type": "array",
+            "title": "Stickers",
+            "default": []
+          },
+          "day": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Day",
+            "description": "The day most photos were taken on; the memory is filed under it."
+          },
+          "timings": {
+            "items": {
+              "$ref": "#/components/schemas/StageTiming"
+            },
+            "type": "array",
+            "title": "Timings"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "session_id",
+          "created_at",
+          "providers",
+          "atoms",
+          "duplicate_groups",
+          "moments",
+          "story",
+          "role_candidates",
+          "seeds",
+          "selected",
+          "verifier",
+          "verifier_mode",
+          "baseline",
+          "palette",
+          "uses_timeline",
+          "timings"
+        ],
+        "title": "WeaveResult"
+      }
+    }
+  }
+}
